@@ -98,10 +98,3 @@ El proceso de ajustar un modelo a un conjunto de datos se llama "entrenamiento" 
 Aunque la mayoría de los modelos de aprendizaje automático no conducen al desarrollo de teorías científicas revolucionarias, pueden revelar relaciones importantes entre datos que nunca antes se habían visto. Los ejemplos incluyen el descubrimiento de genes que pueden estar relacionados con la diabetes, la identificación de patrones en transacciones bancarias que pueden indicar actividad fraudulenta y el descubrimiento de combinaciones de rasgos que pueden indicar nuevas enfermedades.
 
 En resumen, los modelos de aprendizaje automático pueden proporcionar nuevos conocimientos sobre los datos y revelar conexiones significativas.
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
