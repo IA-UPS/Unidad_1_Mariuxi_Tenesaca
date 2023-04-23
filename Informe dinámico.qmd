@@ -1,22 +1,103 @@
 ---
-title: "Informe dinámico"
+title: "Informe Dinámico: Resumen capítulo 1,2 (Machine Learning with R)"
 format: html
 editor: visual
+author: "Mariuxi Maribel Tenesaca Yuqui"
 ---
 
-## Quarto
+# Capítulo 1: Introducing Machine Learning
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+La idea del aprendizaje automático puede ser malinterpretada debido a las representaciones exageradas en la ciencia ficción como que las máquinas aprenden a pensar por sí mismas y se rebelan contra la humanidad. Sin embargo, en la realidad, el aprendizaje automático se enfoca en aplicaciones prácticas y está más relacionado con la tarea de enseñar a una computadora a resolver problemas específicos. Además, el aprendizaje automático proporciona un conjunto de herramientas para transformar datos en conocimiento accionable, en este capítulo se explicarán los conceptos fundamentales que definen y diferencian los enfoques más comunes del aprendizaje automático.
 
-## Running Code
+### **Los orígenes del aprendizaje automático**
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Desde el nacimiento, estamos inundados de datos que nuestros sentidos procesan y nuestro cerebro convierte en experiencia.
 
-```{r}
-1 + 1
-```
+Los primeros registros de bases de datos registraron información del entorno observable, como los patrones de planetas y estrellas, los resultados de experimentos biológicos y los registros de impuestos, enfermedades y poblaciones. Estos registros requieren que las personas primero observen y luego registren las observaciones.
 
-You can add options to executable code like this
+Hoy en día, estas observaciones están cada vez más automatizadas y registradas sistemáticamente en bases de datos informáticas en constante crecimiento.
+
+La invención de los sensores electrónicos contribuyó aún más a la riqueza de los datos registrados. Estos sensores procesan los datos de manera diferente a los humanos, lo que es beneficioso en muchos sentidos, ya que los datos sensoriales sin procesar pueden permanecer objetivos, sin traducirlos al lenguaje humano.
+
+-   Las observaciones de los sensores no tienen un componente subjetivo y no necesariamente reportan la situación real, ya que sus registros pueden diferir dependiendo del tipo de sensor utilizado para medir la misma situación. Por ejemplo, hay una diferencia entre una cámara que toma fotos en blanco y negro y una cámara que toma fotos en color.
+
+Cada aspecto de nuestras vidas se registra a través de bases de datos y sensores. Gobiernos, empresas y particulares registran todo tipo de información, desde la más importante hasta la más básica. Vivimos en la era de los grandes datos (Big Data), donde tenemos una enorme cantidad de datos que pueden ser procesados ​​por máquinas.
+
+Se buscaba una forma sistemática de dar sentido a toda esta información para tomar decisiones informadas. La solución a este problema radica en el aprendizaje automático, que desarrolla algoritmos para transformar los datos en un comportamiento inteligente. Este campo surgió en un entorno donde los volúmenes de datos, los métodos estadísticos y el poder de cómputo se estaban desarrollando rápidamente, lo que permitió ciclos crecientes en la recopilación de datos más grandes e interesantes.
+
+*Diferencia entre aprendizaje automático y minería de datos*.
+
+El aprendizaje automático se enfoca en realizar tareas específicas, mientras que la minería de datos se enfoca en encontrar información valiosa en grandes bases de datos.
+
+-   Ejemplos: El aprendizaje automático se puede usar para enseñar a los robots a conducir, mientras que la minería de datos se puede usar para identificar los tipos de automóviles más seguros.
+
+### **Usos y abusos del aprendizaje automático**
+
+El aprendizaje automático da sentido a datos complejos y tiene amplia aplicación en diferentes campos como:
+
+-    Predecir los resultados de las elecciones
+
+-    Identifique y filtre los mensajes de spam del correo electrónico
+
+-    Prever actividad delictiva
+
+-    Automatice las señales de tráfico de acuerdo con las condiciones de la carretera
+
+-    Producir estimaciones financieras de tormentas y desastres naturales
+
+-    Examinar la rotación de clientes
+
+-    Crea aviones de pilotaje automático y coches de conducción automática.
+
+-    Identificar personas con capacidad para donar
+
+-   Dirigir la publicidad a tipos específicos de consumidores
+
+Los algoritmos de aprendizaje automático toman datos e identifican patrones. En algunos casos, los resultados son tan exitosos que casi parecen llegar alcanzar un estado casi legendario. A pesar de estar familiarizado con los métodos de aprendizaje automático que funcionan detrás de escena, surge la sensación de asombro y preocupación que se genera al notar que los métodos de aprendizaje automático son capaces de conocernos mejor de lo que nosotros mismos lo que hacemos. Es importante considerar las implicaciones éticas que se derivan del uso de estas tecnologías en la extracción de datos.
+
+### **Consideraciones éticas**
+
+El aprendizaje automático es una nueva disciplina que crea incertidumbre sobre las leyes y las normas sociales. Se debe tener cuidado al recopilar y analizar datos para no violar los términos de servicio, los acuerdos de uso de datos, la confianza o la privacidad.
+
+Las leyes comerciales pueden prohibir el uso de datos raciales, étnicos o religiosos. Incluso cuando se excluyen dichos datos, los algoritmos de aprendizaje automático pueden extraer esta información de datos aparentemente inocuos. En tales casos, se debe considerar la posibilidad de excluir por completo los datos identificables.
+
+La privacidad es importante para los clientes y pueden sentirse aprovechados si sus datos se utilizan para fines para los que no han dado su consentimiento. Los requisitos de privacidad varían según los antecedentes, la edad y la ubicación. Es importante considerar las influencias culturales antes de iniciar un proyecto.
+
+### **¿Cómo aprenden las máquinas?**
+
+El aprendizaje automático implica que una máquina utilice la experiencia pasada para mejorar su rendimiento en el futuro. Sin embargo, esta definición no explica cómo estas tecnologías realmente convierten los datos en conocimiento procesable.
+
+El proceso de aprendizaje, ya sea para un humano o una máquina, se puede dividir en tres componentes básicos.
+
+-   Entrada de datos: Utiliza la observación, el almacenamiento de memoria y el recuerdo.
+
+-   Abstracción: Implica la traducción de datos en representaciones más amplias.
+
+-   Generalización: Utiliza datos abstractos para formar una base para la acción.
+
+![Figura 1. Proceso de aprendizaje](images/primera-04.png){fig-align="center" width="440"}
+
+Para una mejor comprensión del proceso de aprendizaje: Los estudiantes pueden volverse ineficientes con la memoria visual mientras se preparan para los exámenes porque el aprendizaje implica más que solo ingresar datos, se requiere comprensión.
+
+El proceso de aprendizaje consta de tres componentes: entrada de datos, abstracción y generalización. Estos componentes están interconectados y estrechamente relacionados. Si bien los humanos realizan este proceso de manera inconsciente, la computadora debe aclarar estos procesos. La ventaja del aprendizaje automático es que el conocimiento adquirido es transparente y puede verificarse para uso futuro.
+
+### **Abstracción y representación del conocimiento**
+
+El proceso de abstracción es esencial para comprender los datos de entrada sin procesar y transformarlos en un formato estructurado para su procesamiento mediante algoritmos de aprendizaje.
+
+El proceso de representación del conocimiento implica que las computadoras transformen la entrada sin procesar en modelos que describen patrones estructurados de datos. Hay varios tipos de modelos, como modelos gráficos, modelos basados ​​en reglas y modelos de redes neuronales. Ejemplos, incluyen:
+
+-   Ecuaciones, diagramas como árboles y gráficos
+
+-   Reglas lógicas if/else
+
+El proceso de ajustar un modelo a un conjunto de datos se llama "entrenamiento" porque este término describe mejor el proceso real que ocurre cuando el modelo se ajusta a los datos. El texto también dice que el aprendizaje requiere un paso adicional para generalizar el conocimiento a datos futuros, y que la capacitación involucra a un maestro humano que impone un modelo de aprendizaje automático a un aprendiz automático. La figura 2 muestra un ejemplo.
+
+![Figura 2. Modelo](images/segunda.png){fig-align="center" width="426"}
+
+Aunque la mayoría de los modelos de aprendizaje automático no conducen al desarrollo de teorías científicas revolucionarias, pueden revelar relaciones importantes entre datos que nunca antes se habían visto. Los ejemplos incluyen el descubrimiento de genes que pueden estar relacionados con la diabetes, la identificación de patrones en transacciones bancarias que pueden indicar actividad fraudulenta y el descubrimiento de combinaciones de rasgos que pueden indicar nuevas enfermedades.
+
+En resumen, los modelos de aprendizaje automático pueden proporcionar nuevos conocimientos sobre los datos y revelar conexiones significativas.
 
 ```{r}
 #| echo: false
