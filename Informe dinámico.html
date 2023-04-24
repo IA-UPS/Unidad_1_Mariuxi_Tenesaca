@@ -604,6 +604,83 @@ Levels: A B AB O</code></pre>
 </section>
 <section id="gestión-de-datos-con-r" class="level3">
 <h3 class="anchored" data-anchor-id="gestión-de-datos-con-r"><strong>Gestión de datos con R</strong></h3>
+<p>Uno de los desafíos de trabajar con grandes conjuntos de datos es la recopilación, preparación y gestión de datos de múltiples fuentes. Pero las herramientas de R facilitan esta tarea al permitirle cargar datos de muchos formatos comunes.</p>
+</section>
+<section id="guardar-y-cargar-estructuras-de-datos-r" class="level3">
+<h3 class="anchored" data-anchor-id="guardar-y-cargar-estructuras-de-datos-r"><strong>Guardar y cargar estructuras de datos R</strong></h3>
+<ul>
+<li><p>Para evitar tener que volver a crear el marco de datos cada vez que reinicia su sesión de R, puede usar la función Guardar() para guardar la estructura de datos en un archivo que luego se puede volver a cargar o transferir a otro sistema.</p></li>
+<li><p>La función save() escribe una estructura de datos R en la ubicación especificada por el parámetro de archivo y el archivo de datos R tiene la extensión .RData.</p></li>
+</ul>
+<p>Si tuviéramos tres objetos llamadosx, y,yz,podríamos guardarlos en un archivomisdatos.RData usando el siguiente comando:</p>
+<p><code>save(x, y, z, file = "mydata.RData"</code></p>
+<p>Para cargar mydat.RData que guardamos en el código anterior, simplemente escriba:</p>
+<p><code>load("mydata.RData")</code></p>
+<p><strong>Importante:</strong> Si necesita terminar su sesión de R rápidamente, save.image().De forma predeterminada, R buscará este archivo la próxima vez que inicie R, y su sesión se volverá a crear tal como la dejó.</p>
+</section>
+<section id="importar-y-guardar-datos-de-archivos-csv" class="level3">
+<h3 class="anchored" data-anchor-id="importar-y-guardar-datos-de-archivos-csv"><strong>Importar y guardar datos de archivos CSV</strong></h3>
+<p>Los archivos de texto son una forma común de almacenar datos públicos porque están disponibles en cualquier sistema operativo y se pueden importar y exportar desde programas como Excel.</p>
+<p>Estos archivos se pueden estructurar como una matriz, tabulada, donde cada fila es un ejemplo y contiene un número igual de funciones separadas por un delimitador predefinido.</p>
+<p>&nbsp;La primera fila también suele contener los nombres de columna de los datos, conocida como fila de encabezado.</p>
+<p>Un archivo CSV que represente el conjunto de datos médicos construido previamente tendría el siguiente aspecto:</p>
+<p><code>subject_name,temperature,flu_status,gender,blood_type</code></p>
+<p><code>John Doe,98.1,FALSE,MALE,O Jane Doe,98.6,FALSE,FEMALE,AB</code></p>
+<p><code>Steve Graves,101.4,TRUE,MALE,A</code></p>
+<p>Para cargar este archivo CSV en R</p>
+<p><code>pt_data &lt;- read.csv("pt_data.csv", stringsAsFactors = FALSE)</code></p>
+<p>Si sus datos residen fuera del directorio de trabajo de R, puede especificar la ruta al archivo CSV especificando la ruta completa.</p>
+<p>Si un archivo CSV no tiene encabezado, especifique la opción encabezado = FALSO como se muestra en el siguiente comando, y R asignará nombres de características predeterminados en la formaV1, V2: <code>mydata &lt;- read.csv("mydata.csv", stringsAsFactors = FALSE, header = FALSE)</code></p>
+<ul>
+<li><p>La función <strong>read.csv()</strong> es un caso especial de <strong>read.table()</strong>función, que puede leer datos tabulares en muchas formas diferentes.</p></li>
+<li><p>Para guardar un marco de datos en un archivo CSV, use el método <strong>write.CSV ()</strong>.</p></li>
+<li><p>Si su marco de datos se llama <strong>pt_data</strong>, simplemente ingrese:</p>
+<p><code>write.csv(pt_data, file = "pt_data.csv")</code></p></li>
+</ul>
+</section>
+<section id="importación-de-datos-de-bases-de-datos-sql" class="level3">
+<h3 class="anchored" data-anchor-id="importación-de-datos-de-bases-de-datos-sql"><strong>Importación de datos de bases de datos SQL</strong></h3>
+<p>Si sus datos se almacenan en un ODBC (Conectividad de base de datos abierta) SQL (lenguaje de consulta estructurado) base de datos como Oracle, MySQL, PostgreSQL, Microsoft SQL o SQLite, la RODBC paquete creado por Brian Ripley se puede utilizar para importar estos datos directamente en un marco de datos R.</p>
+<p>ODBC es un protocolo estándar para conectarse a bases de datos independientemente del sistema operativo oSGBD(Sistema de administración de base de datos).</p>
+<p>Deberá instalar y cargar el RODBC paquete:</p>
+<p><code>install.packages("RODBC")</code></p>
+<p><code>library(RODBC)</code></p>
+</section>
+<section id="exploración-y-comprensión-de-datos" class="level3">
+<h3 class="anchored" data-anchor-id="exploración-y-comprensión-de-datos"><strong>Exploración y comprensión de datos</strong></h3>
+<ul>
+<li><p>La siguiente etapa del aprendizaje automático consiste en analizar a fondo los datos recopilados en R.</p></li>
+<li><p>Se examinan las características y los ejemplos para identificar las peculiaridades y elegir el mejor modelo.</p></li>
+<li><p>La recopilación de datos <strong>usedcars.csv</strong> es un ejemplo de exploración de datos sobre autos usados ​​a la venta en un sitio web estadounidense.</p></li>
+</ul>
+<p>Podemos usar read.csv() función para cargar los datos en un marco de datos R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>usedcars <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"usedcars.csv"</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="explorando-la-estructura-de-los-datos" class="level3">
+<h3 class="anchored" data-anchor-id="explorando-la-estructura-de-los-datos"><strong>Explorando la estructura de los datos</strong></h3>
+<p>La función str() proporciona un método para mostrar la estructura de un marco de datos, o cualquier estructura de datos R, incluidos vectores y listas.</p>
+<p>Se puede utilizar para crear el esquema básico de nuestro diccionario de datos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(usedcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   150 obs. of  6 variables:
+ $ year        : int  2011 2011 2011 2011 2012 2010 2011 2010 2011 2010 ...
+ $ model       : chr  "SEL" "SEL" "SEL" "SEL" ...
+ $ price       : int  21992 20995 19995 17809 17500 17495 17000 16995 16995 16995 ...
+ $ mileage     : int  7413 10926 7351 11613 8367 25125 27393 21026 32655 36116 ...
+ $ color       : chr  "Yellow" "Gray" "Silver" "Gray" ...
+ $ transmission: chr  "AUTO" "AUTO" "AUTO" "AUTO" ...</code></pre>
+</div>
+</div>
+<p>Se obtuvo gracias al comando:</p>
+<ul>
+<li><p>Hay 150 observaciones en los datos, lo que sugiere que se trata de ejemplos de automóviles usados en venta.</p></li>
+<li><p>Las 6 variables declaración se refiere a las seis características que se registraron en los datos.</p></li>
+<li><p>La variable, chr nos dice que la característica es de tipo carácter.</p></li>
+</ul>
+<p>A veces, los nombres de las variables en los conjuntos de datos no tienen sentido y pueden requerir más investigación para comprender lo que realmente representan. Si bien los nombres pueden ser útiles, es importante ser selectivo y verificar las etiquetas de las variables.</p>
 </section>
 </section>
 </section>

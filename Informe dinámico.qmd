@@ -269,7 +269,7 @@ blood
 
 Note que cuando definimos sangre factor para los tres pacientes, especificamos un vector adicional de cuatro posibles tipos de sangre usando niveles =declaración. Como resultado, aunque nuestros datos incluyen solo tipos O, AB, y A, los cuatro tipos se almacenan con sangre factor indicado por la salida Niveles: AB AB O. El almacenamiento del nivel adicional permite la posibilidad de agregar datos con el otro tipo de sangre en el futuro.
 
-### **Listas** 
+### **Listas**
 
 Las listas en R le permiten almacenar diferentes tipos de valores y se usan comúnmente para almacenar diferentes tipos de datos de entrada y salida, así como conjuntos de parámetros de configuración para modelos de aprendizaje automático.
 
@@ -348,8 +348,7 @@ Si desea más de una fila o columna de datos, puede hacerlo especificando vector
 pt_data[c(1,3),c(2,4)]
 ```
 
-Para extraer todas las filas o columnas, en lugar de enumerarlas todas, simplemente deje en blanco la
-parte de la fila o la columna.
+Para extraer todas las filas o columnas, en lugar de enumerarlas todas, simplemente deje en blanco la parte de la fila o la columna.
 
 ```{r}
 pt_data[, 1]
@@ -426,16 +425,99 @@ m[, 1]
 
 ### **Gestión de datos con R**
 
+Uno de los desafíos de trabajar con grandes conjuntos de datos es la recopilación, preparación y gestión de datos de múltiples fuentes. Pero las herramientas de R facilitan esta tarea al permitirle cargar datos de muchos formatos comunes.
 
+### **Guardar y cargar estructuras de datos R**
 
+-   Para evitar tener que volver a crear el marco de datos cada vez que reinicia su sesión de R, puede usar la función Guardar() para guardar la estructura de datos en un archivo que luego se puede volver a cargar o transferir a otro sistema.
 
+-   La función save() escribe una estructura de datos R en la ubicación especificada por el parámetro de archivo y el archivo de datos R tiene la extensión .RData.
 
+Si tuviéramos tres objetos llamadosx, y,yz,podríamos guardarlos en un archivomisdatos.RData usando el siguiente comando:
 
+`save(x, y, z, file = "mydata.RData"`
 
+Para cargar mydat.RData que guardamos en el código anterior, simplemente escriba:
 
+`load("mydata.RData")`
 
+**Importante:** Si necesita terminar su sesión de R rápidamente, save.image().De forma predeterminada, R buscará este archivo la próxima vez que inicie R, y su sesión se volverá a crear tal como la dejó.
 
+### **Importar y guardar datos de archivos CSV**
 
+Los archivos de texto son una forma común de almacenar datos públicos porque están disponibles en cualquier sistema operativo y se pueden importar y exportar desde programas como Excel.
 
+Estos archivos se pueden estructurar como una matriz, tabulada, donde cada fila es un ejemplo y contiene un número igual de funciones separadas por un delimitador predefinido.
 
+ La primera fila también suele contener los nombres de columna de los datos, conocida como fila de encabezado.
 
+Un archivo CSV que represente el conjunto de datos médicos construido previamente tendría el siguiente aspecto:
+
+`subject_name,temperature,flu_status,gender,blood_type`
+
+`John Doe,98.1,FALSE,MALE,O Jane Doe,98.6,FALSE,FEMALE,AB`
+
+`Steve Graves,101.4,TRUE,MALE,A`
+
+Para cargar este archivo CSV en R
+
+`pt_data <- read.csv("pt_data.csv", stringsAsFactors = FALSE)`
+
+Si sus datos residen fuera del directorio de trabajo de R, puede especificar la ruta al archivo CSV especificando la ruta completa.
+
+Si un archivo CSV no tiene encabezado, especifique la opción encabezado = FALSO como se muestra en el siguiente comando, y R asignará nombres de características predeterminados en la formaV1, V2: `mydata <- read.csv("mydata.csv", stringsAsFactors = FALSE, header = FALSE)`
+
+-   La función **read.csv()** es un caso especial de **read.table()**función, que puede leer datos tabulares en muchas formas diferentes.
+
+-   Para guardar un marco de datos en un archivo CSV, use el método **write.CSV ()**.
+
+-   Si su marco de datos se llama **pt_data**, simplemente ingrese:
+
+    `write.csv(pt_data, file = "pt_data.csv")`
+
+### **Importación de datos de bases de datos SQL**
+
+Si sus datos se almacenan en un ODBC (Conectividad de base de datos abierta) SQL (lenguaje de consulta estructurado) base de datos como Oracle, MySQL, PostgreSQL, Microsoft SQL o SQLite, la RODBC paquete creado por Brian Ripley se puede utilizar para importar estos datos directamente en un marco de datos R.
+
+ODBC es un protocolo estándar para conectarse a bases de datos independientemente del sistema operativo oSGBD(Sistema de administración de base de datos).
+
+Deberá instalar y cargar el RODBC paquete:
+
+`install.packages("RODBC")`
+
+`library(RODBC)`
+
+### **Exploración y comprensión de datos**
+
+-   La siguiente etapa del aprendizaje automático consiste en analizar a fondo los datos recopilados en R.
+
+-   Se examinan las características y los ejemplos para identificar las peculiaridades y elegir el mejor modelo.
+
+-   La recopilación de datos **usedcars.csv** es un ejemplo de exploración de datos sobre autos usados ​​a la venta en un sitio web estadounidense.
+
+Podemos usar read.csv() función para cargar los datos en un marco de datos R:
+
+```{r}
+usedcars <- read.csv("usedcars.csv", stringsAsFactors = FALSE)
+
+```
+
+### **Explorando la estructura de los datos**
+
+La función str() proporciona un método para mostrar la estructura de un marco de datos, o cualquier estructura de datos R, incluidos vectores y listas.
+
+Se puede utilizar para crear el esquema básico de nuestro diccionario de datos:
+
+```{r}
+str(usedcars)
+```
+
+Se obtuvo gracias al comando:
+
+-   Hay 150 observaciones en los datos, lo que sugiere que se trata de ejemplos de automóviles usados en venta.
+
+-   Las 6 variables declaración se refiere a las seis características que se registraron en los datos.
+
+-   La variable, chr nos dice que la característica es de tipo carácter.
+
+A veces, los nombres de las variables en los conjuntos de datos no tienen sentido y pueden requerir más investigación para comprender lo que realmente representan. Si bien los nombres pueden ser útiles, es importante ser selectivo y verificar las etiquetas de las variables.
