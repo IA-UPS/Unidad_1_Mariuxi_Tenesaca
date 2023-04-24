@@ -602,8 +602,7 @@ Ejemplo:
 diff(range(usedcars$price))
 ```
 
-Los cuartiles primero y tercero, Q1 y Q3, se refieren al valor por debajo o por encima del cual se encuentra una cuarta parte de los valores
-La diferencia entre Q1 y Q3:
+Los cuartiles primero y tercero, Q1 y Q3, se refieren al valor por debajo o por encima del cual se encuentra una cuarta parte de los valores La diferencia entre Q1 y Q3:
 
 Se conoce como rango intercuartil (IQR), y se puede calcular con la **función IQR()**:
 
@@ -851,6 +850,6 @@ Hay una gran cantidad de datos en la tabla cruzada()producción.
 
 -   Se analiza en detalle varios tipos de estructuras de almacenamiento de datos, comenzando con vectores y expandiéndose a tipos de datos más complejos, como listas y marcos de datos.
 
--    Se resalta un marco de datos, que es una estructura de datos en R que representa el concepto de un conjunto de datos de funciones y ejemplos.
+-   Se resalta un marco de datos, que es una estructura de datos en R que representa el concepto de un conjunto de datos de funciones y ejemplos.
 
--    Además, cómo recuperar datos en R de una variedad de fuentes, incluidos archivos CSV y bases de datos SQL, que se pueden consultar con el paquete RODBC.
+-   Además, cómo recuperar datos en R de una variedad de fuentes, incluidos archivos CSV y bases de datos SQL, que se pueden consultar con el paquete RODBC.
