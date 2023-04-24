@@ -21,6 +21,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -120,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/primera-04.png" class="img-fluid figure-img" width="440"></p>
+<p><img src="images/primera-04.png" class="img-fluid figure-img" width="489"></p>
 <p></p><figcaption class="figure-caption">Figura 1. Proceso de aprendizaje</figcaption><p></p>
 </figure>
 </div>
@@ -138,18 +201,410 @@ ul.task-list li input[type="checkbox"] {
 <p>El proceso de ajustar un modelo a un conjunto de datos se llama “entrenamiento” porque este término describe mejor el proceso real que ocurre cuando el modelo se ajusta a los datos. El texto también dice que el aprendizaje requiere un paso adicional para generalizar el conocimiento a datos futuros, y que la capacitación involucra a un maestro humano que impone un modelo de aprendizaje automático a un aprendiz automático. La figura 2 muestra un ejemplo.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/segunda.png" class="img-fluid figure-img" width="426"></p>
+<p><img src="images/segunda.png" class="img-fluid figure-img" width="441"></p>
 <p></p><figcaption class="figure-caption">Figura 2. Modelo</figcaption><p></p>
 </figure>
 </div>
 <p>Aunque la mayoría de los modelos de aprendizaje automático no conducen al desarrollo de teorías científicas revolucionarias, pueden revelar relaciones importantes entre datos que nunca antes se habían visto. Los ejemplos incluyen el descubrimiento de genes que pueden estar relacionados con la diabetes, la identificación de patrones en transacciones bancarias que pueden indicar actividad fraudulenta y el descubrimiento de combinaciones de rasgos que pueden indicar nuevas enfermedades.</p>
 <p>En resumen, los modelos de aprendizaje automático pueden proporcionar nuevos conocimientos sobre los datos y revelar conexiones significativas.</p>
+</section>
+<section id="generalización" class="level3">
+<h3 class="anchored" data-anchor-id="generalización"><strong>Generalización</strong></h3>
+<p>El término generalización se refiere al proceso de transformar el conocimiento abstracto en una forma utilizable. Este proceso es difícil de describir y tradicionalmente se considera que busca en toda la colección de patrones que pueden haber sido adquiridos durante el entrenamiento. La generalización implica el importante descubrimiento de reducir ese conjunto a un número manejable, y los algoritmos de aprendizaje automático utilizan heurísticas, o conjeturas fundamentadas, para desglosar más rápidamente conjuntos de conceptos.</p>
+<p>Los algoritmos de aprendizaje automático pueden estar sesgados y sacar conclusiones incorrectas debido al uso inadecuado de la heurística. Por ejemplo, un algoritmo que reconoce rostros puede tener problemas con rostros que no coinciden con su modelo y está sesgado contra ciertas características.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tercero.png" class="img-fluid figure-img" width="446"></p>
+<p></p><figcaption class="figure-caption">Figura 3. Algoritmo que reconoce rostros</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="evaluar-el-éxito-del-aprendizaje" class="level3">
+<h3 class="anchored" data-anchor-id="evaluar-el-éxito-del-aprendizaje"><strong>Evaluar el éxito del aprendizaje</strong></h3>
+<p>El sesgo es un aspecto inevitable del aprendizaje automático debido al proceso de abstracción y generalización. Cada modelo de aprendizaje tiene sus propias debilidades y sesgos, y no existe un modelo universal que pueda superarlos. Por tanto, el éxito de un modelo depende de su capacidad para generalizar los resultados a nuevos datos, aunque los modelos rara vez generalizan perfectamente a todas las sorpresas.</p>
+<p>&nbsp;Una de las razones por las que los modelos de aprendizaje automático no se generalizan perfectamente es el problema del ruido en los datos. Este ruido es causado por variaciones inexplicables en los datos, que pueden ser causados ​​por eventos aleatorios, errores de medición causados ​​por sensores imprecisos, problemas de informes de datos y errores de registro de datos, entre otros. Los intentos de modelar el ruido en los datos pueden llevar a conclusiones incorrectas y a modelos más complejos que no se generalizan bien en casos nuevos.</p>
+</section>
+<section id="pasos-para-aplicar-el-aprendizaje-automático-a-sus-datos" class="level3">
+<h3 class="anchored" data-anchor-id="pasos-para-aplicar-el-aprendizaje-automático-a-sus-datos"><strong>Pasos para aplicar el aprendizaje automático a sus datos</strong></h3>
+<p>El proceso de cualquier tarea de aprendizaje automático se puede dividir en cinco pasos manejables.</p>
+<ol type="1">
+<li><p>El primer paso implica la recolección de datos en un formato electrónico adecuado para el análisis.</p></li>
+<li><p>El segundo paso se centra en la exploración y preparación de los datos, lo que requiere una gran cantidad de intervención humana.</p></li>
+<li><p>El tercer paso implica entrenar un modelo en los datos</p></li>
+<li><p>El cuarto paso evalúa el rendimiento del modelo.</p></li>
+<li><p>Como cada modelo de aprendizaje automático está sesgado, el quinto y último paso implica mejorar el rendimiento del modelo utilizando estrategias más avanzadas, incluyendo la recolección de datos adicionales y realizar trabajo preparatorio adicional.</p></li>
+</ol>
+<p>Después de los pasos de recopilación y preparación de datos, capacitación del modelo, evaluación y mejora del rendimiento, el modelo se puede implementar para la tarea prevista, como proporcionar datos de valoración para pronósticos, pronósticos financieros, automatización de tareas, etc. Los éxitos y errores en la implementación de modelos pueden proporcionar datos adicionales para entrenar la próxima generación de modelos.</p>
+</section>
+<section id="elegir-un-algoritmo-de-aprendizaje-automático" class="level3">
+<h3 class="anchored" data-anchor-id="elegir-un-algoritmo-de-aprendizaje-automático"><strong>Elegir un algoritmo de aprendizaje automático</strong></h3>
+<p>El proceso de selección de un algoritmo de aprendizaje automático implica hacer coincidir las características de los datos que se van a aprender con los sesgos de los métodos disponibles. La elección del algoritmo depende del tipo de datos a analizar y de la tarea propuesta. Es importante tener en cuenta este proceso al recopilar, investigar y limpiar datos.</p>
+<section id="pensando-en-los-datos-de-entrada" class="level4">
+<h4 class="anchored" data-anchor-id="pensando-en-los-datos-de-entrada"><strong>Pensando en los datos de entrada</strong></h4>
+<p>Los algoritmos de aprendizaje automático requieren datos de entrenamiento en forma de ejemplos y funciones.</p>
+<ul>
+<li><p>En el análisis de datos, una “unidad de observación” es la unidad por la cual se mide un evento, que puede ser una transacción, persona, tiempo, región geográfica o medida. También puede ser una combinación de estas categorías, como el seguimiento del año personal de una persona en diferentes momentos.</p></li>
+<li><p>En el aprendizaje automático, las funciones son atributos o características de ejemplos que se pueden usar para aprender un concepto deseado. Los atributos pueden variar de un conjunto de datos a otro y pueden ser palabras en un correo electrónico o datos genómicos de una biopsia.</p></li>
+</ul>
+</section>
+<section id="pensando-en-los-tipos-de-algoritmos-de-aprendizaje-automático" class="level4">
+<h4 class="anchored" data-anchor-id="pensando-en-los-tipos-de-algoritmos-de-aprendizaje-automático"><strong>Pensando en los tipos de algoritmos de aprendizaje automático</strong></h4>
+<p>Existen dos tipos de algoritmos de aprendizaje automático: supervisados ​​y no supervisados. Los algoritmos supervisados ​​se usan para construir modelos predictivos, mientras que los algoritmos no supervisados ​​se usan para construir modelos descriptivos. El tipo de algoritmo a utilizar depende de la tarea de aprendizaje a implementar.</p>
+<ul>
+<li><p><strong>Los</strong> <strong>modelos predictivos</strong>: Se utilizan para predecir un valor utilizando otros valores en un conjunto de datos. No necesariamente necesitan predecir eventos futuros y se pueden usar para predecir eventos pasados ​​o eventos en tiempo real, como el control de semáforos durante las horas pico.</p></li>
+<li><p><strong>Los</strong> <strong>modelos descriptivos:</strong> Se utilizan para resumir datos de formas nuevas e interesantes y no tienen un objetivo de aprendizaje específico que los distinga de los modelos predictivos. Dado que no existe un establecimiento de objetivos, el proceso de formación se denomina aprendizaje no supervisado. Aunque es difícil imaginar las aplicaciones de los modelos descriptivos, a menudo se utilizan en la minería de datos.</p></li>
+</ul>
+</section>
+<section id="hacer-coincidir-sus-datos-con-un-algoritmo-apropiado" class="level4">
+<h4 class="anchored" data-anchor-id="hacer-coincidir-sus-datos-con-un-algoritmo-apropiado"><strong>Hacer coincidir sus datos con un algoritmo apropiado</strong></h4>
+<p>La siguiente tabla muestra los tipos generales de algoritmos de aprendizaje automático, aunque no cubre todos los algoritmos disponibles.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/cuarto.png" class="img-fluid figure-img" width="376"></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="uso-de-r-para-el-aprendizaje-automático" class="level3">
+<h3 class="anchored" data-anchor-id="uso-de-r-para-el-aprendizaje-automático"><strong>Uso de R para el aprendizaje automático</strong></h3>
+<p>Muchos algoritmos necesarios para el aprendizaje automático en R no están incluidos en la instalación básica, pero debido a que R es gratuito y de código abierto, la comunidad de expertos ha agregado algoritmos necesarios para el aprendizaje automático en R base.</p>
+<section id="instalación-y-carga-de-paquetes-r" class="level4">
+<h4 class="anchored" data-anchor-id="instalación-y-carga-de-paquetes-r"><strong>Instalación y carga de paquetes R</strong></h4>
+<p>El paquete RWeka que proporciona acceso a algoritmos de aprendizaje automático en el paquete Weka basado en Java. En el siguiente enlace se otorga más información:</p>
+<p><a href="https://www.cs.waikato.ac.nz/~ml/weka/">Weka 3 - Data Mining with Open Source Machine Learning Software in Java (waikato.ac.nz)</a></p>
+</section>
+<section id="instalación-de-un-paquete-r" class="level4">
+<h4 class="anchored" data-anchor-id="instalación-de-un-paquete-r"><strong>Instalación de un paquete R</strong></h4>
+<p>La forma más directa de instalar un paquete es a través de:</p>
+<ul>
+<li><em>instalar.paquetes()función.</em></li>
+</ul>
+<p>Para instalar elRWekapaquete, en el símbolo del sistema R simplemente escriba:</p>
+<ul>
+<li>&nbsp;<em>&gt; instalar.paquetes(“RWeka”)</em></li>
+</ul>
+<p>R luego se conectará a CRAN y descargará el paquete en el formato correcto para su sistema operativo.</p>
+</section>
+<section id="instalación-de-un-paquete-mediante-la-interfaz-de-apuntar-y-hacer-clic" class="level4">
+<h4 class="anchored" data-anchor-id="instalación-de-un-paquete-mediante-la-interfaz-de-apuntar-y-hacer-clic"><strong>Instalación de un paquete mediante la interfaz de apuntar y hacer clic</strong></h4>
+<p>R es una interfaz gráfica de usuario (GUI) para instalar paquetes disponibles en el menú Paquetes en Windows y Mac OS X.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quinto.png" class="img-fluid figure-img" width="329"></p>
+<p></p><figcaption class="figure-caption">Figura 5. Instalación de paquetes</figcaption><p></p>
+</figure>
+</div>
+<p>El proceso de instalación del paquete RWeka es diferente en Windows y Mac OS X. En Windows, después de seleccionar la ubicación del espejo CRAN, se muestra una lista de paquetes donde debe buscar RWeka y hacer clic en Aceptar para instalar el paquete y sus dependencias en la ubicación predeterminada.</p>
+<p>&nbsp;En Mac OS X, haga clic en “Obtener lista” para cargar una lista de paquetes, busque RWeka (o utilice la función de búsqueda de paquetes), seleccione “Instalar seleccionados” y, opcionalmente, marque la casilla “Instalar seleccionados”. dependencias” para instalar dependencias con paquetes.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/sexto.png" class="img-fluid figure-img" width="295"></p>
+<p></p><figcaption class="figure-caption">Figura 6. Instalación del paquete RWeka en Windows y Mac OS X</figcaption><p></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="resumen" class="level3">
+<h3 class="anchored" data-anchor-id="resumen">Resumen</h3>
+<p><strong>El aprendizaje automático</strong> es una herramienta poderosa que surgió de la intersección de las estadísticas, la ciencia de bases de datos y la informática. Se utiliza para encontrar información procesable en grandes volúmenes de datos, pero se debe tener cuidado para evitar abusos comunes.</p>
+<p><strong>El aprendizaje automático</strong> implica abstraer datos en representaciones estructuradas y generalizar esa estructura en acción, y puede dividirse en tareas específicas como la clasificación y la predicción numérica. R proporciona soporte de aprendizaje automático en forma de paquetes descargables gratuitamente, pero estos deben instalarse antes de su uso.</p>
+</section>
+<section id="capítulo-2" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-2"><strong>Capítulo 2</strong></h2>
+<section id="gestión-y-comprensión-de-datos" class="level3">
+<h3 class="anchored" data-anchor-id="gestión-y-comprensión-de-datos"><strong>Gestión y comprensión de datos</strong></h3>
+<p>El proceso de administrar y comprender los datos es una parte crítica y temprana de cualquier proyecto de aprendizaje automático porque cualquier algoritmo es tan bueno como sus datos de entrada. Aunque quizás no sea tan valiosa como la construcción de modelos, la preparación y exploración de datos es muy importante porque en muchos casos los datos de entrada son complejos y desordenados. La mayor parte del esfuerzo que se dedica a un proyecto de aprendizaje automático se dedica a esta fase.</p>
+</section>
+<section id="vectores" class="level3">
+<h3 class="anchored" data-anchor-id="vectores"><strong>Vectores</strong></h3>
+<p>Una estructura de datos básica en R es un vector que almacena un conjunto ordenado de elementos del mismo tipo. El aprendizaje automático utiliza varios tipos comunes de vectores, como enteros, números, caracteres y booleanos, y hay dos valores especiales que representan valores faltantes. Comprender y manipular vectores es esencial para la preparación y el análisis de datos en proyectos de aprendizaje automático.</p>
+<p>Se pueden crear vectores simples usando:</p>
+<ul>
+<li><p>La función de combinación C ().</p></li>
+<li><p>Dar un nombre usando el operador de flecha &lt;-, que es el operador de asignación de R.</p></li>
+<li><p>Operador de asignación = en muchos otros lenguajes de programación.</p></li>
+</ul>
+<p>Ejemplo: Un conjunto de vectores que contengan datos sobre tres pacientes médicos.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>subject_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"John Doe"</span>, <span class="st">"Jane Doe"</span>, <span class="st">"Steve Graves"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>temperature <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">98.1</span>,<span class="fl">98.6</span>,<span class="fl">101.4</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>flu_status <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para obtener la temperatura corporal de la paciente Jane Doe, o el elemento 2 en el vector de temperatura, simplemente escriba:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>temperature[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<pre><code>[1] 98.6</code></pre>
 </div>
 </div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+<p>Se puede obtener un rango de valores utilizando el operador de dos puntos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>temperature[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  98.6 101.4</code></pre>
+</div>
+</div>
+<p>Para excluir los datos de temperatura de Jane Doe, escriba:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>temperature[<span class="sc">-</span><span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  98.1 101.4</code></pre>
+</div>
+</div>
+<p>Para incluir las dos primeras lecturas de temperatura pero excluir la tercera, escriba:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>temperature[<span class="fu">c</span>(<span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 98.1 98.6</code></pre>
+</div>
+</div>
+</section>
+<section id="factores" class="level3">
+<h3 class="anchored" data-anchor-id="factores"><strong>Factores</strong></h3>
+<p>R proporciona una estructura de datos llamada factores para representar variables nominales en el aprendizaje automático. Los factores son un caso especial de vectores diseñados para este propósito.</p>
+<p>El uso de factores en lugar de vectores de caracteres tiene varias ventajas en términos de eficiencia de la memoria y la capacidad de manejar variables categóricas en algoritmos de aprendizaje automático. Los factores almacenan etiquetas de clase solo una vez y algunos algoritmos tienen rutinas especiales para manejar variables categóricas codificadas como factores. Esto asegura que el modelo manejará los datos correctamente.</p>
+<p>Para crear un factor a partir de un personaje vector, simplemente aplique el factor()función. Por ejemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"MASCULINO"</span>,<span class="st">"FEMENINO"</span>,<span class="st">"MASCULINO"</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>gender</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] MASCULINO FEMENINO  MASCULINO
+Levels: FEMENINO MASCULINO</code></pre>
+</div>
+</div>
+<p>Cuando se crean factores, podemos agregar niveles adicionales que pueden no aparecer en los datos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>blood<span class="ot">&lt;-</span><span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"O"</span>,<span class="st">"AB"</span>,<span class="st">"A"</span>),<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"AB"</span>,<span class="st">"O"</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>blood</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] O  AB A 
+Levels: A B AB O</code></pre>
+</div>
+</div>
+<p>Note que cuando definimos sangre factor para los tres pacientes, especificamos un vector adicional de cuatro posibles tipos de sangre usando niveles =declaración. Como resultado, aunque nuestros datos incluyen solo tipos O, AB, y A, los cuatro tipos se almacenan con sangre factor indicado por la salida Niveles: AB AB O. El almacenamiento del nivel adicional permite la posibilidad de agregar datos con el otro tipo de sangre en el futuro.</p>
+</section>
+<section id="listas" class="level3">
+<h3 class="anchored" data-anchor-id="listas"><strong>Listas</strong></h3>
+<p>Las listas en R le permiten almacenar diferentes tipos de valores y se usan comúnmente para almacenar diferentes tipos de datos de entrada y salida, así como conjuntos de parámetros de configuración para modelos de aprendizaje automático.</p>
+<p>Para ilustrar las listas, considere el conjunto de datos de pacientes médicos. Si quisiéramos mostrar todos los datos de John Doe (sujeto 1), necesitaríamos ingresar cinco comandos R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>subject_name[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "John Doe"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>temperature[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 98.1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>flu_status[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>gender[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] MASCULINO
+Levels: FEMENINO MASCULINO</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>blood[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] O
+Levels: A B AB O</code></pre>
+</div>
+</div>
+<p>Esto parece mucho trabajo para mostrar los datos médicos de un paciente. La estructura de la lista nos permite agrupar todos los datos de un paciente en un objeto que podemos usar repetidamente. Similar a crear un vector con C(),se crea una lista usando lista()función como se muestra en el siguiente ejemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>subject1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">fullname =</span> subject_name[<span class="dv">1</span>], </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a> <span class="at">temperature =</span> temperature[<span class="dv">1</span>],</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a> <span class="at">flu_status =</span> flu_status[<span class="dv">1</span>],</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a> <span class="at">gender =</span> gender[<span class="dv">1</span>],</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a> <span class="at">blood =</span> blood[<span class="dv">1</span>])</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>subject1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$fullname
+[1] "John Doe"
+
+$temperature
+[1] 98.1
+
+$flu_status
+[1] FALSE
+
+$gender
+[1] MASCULINO
+Levels: FEMENINO MASCULINO
+
+$blood
+[1] O
+Levels: A B AB O</code></pre>
+</div>
+</div>
+<p>Imprimir los datos de un paciente ahora es cuestión de escribir un solo comando:</p>
+</section>
+<section id="marcos-de-datos" class="level3">
+<h3 class="anchored" data-anchor-id="marcos-de-datos"><strong>Marcos de datos</strong></h3>
+<p>Un marco de datos es una estructura de datos importante que se usa en el aprendizaje automático de R, similar a una hoja de cálculo o una base de datos que contiene filas y columnas de datos. Consiste en vectores o listas de factores con el mismo número de valores, por lo que es una combinación de vectores y listas.</p>
+<p>Usando los vectores de datos de pacientes que creamos previamente, elmarco de datos()la función los combina en un marco de datos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pt_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(subject_name, temperature, flu_status,</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a> gender, blood, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>pt_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  subject_name temperature flu_status    gender blood
+1     John Doe        98.1      FALSE MASCULINO     O
+2     Jane Doe        98.6      FALSE  FEMENINO    AB
+3 Steve Graves       101.4       TRUE MASCULINO     A</code></pre>
+</div>
+</div>
+<p>En comparación con los vectores, factores y listas unidimensionales, un marco de datos tiene dos dimensiones y, por lo tanto, se muestra en formato de matriz.</p>
+<p>La forma más directa de extraer un solo elemento, en este caso un vector o columna de datos, es referirse a él por su nombre. Por ejemplo, para obtener nombre del tema vectorial, tipo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pt_data<span class="sc">$</span>subject_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "John Doe"     "Jane Doe"     "Steve Graves"</code></pre>
+</div>
+</div>
+<p>Se puede usar un vector de nombres para extraer varias columnas de un marco de datos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>pt_data[<span class="fu">c</span>(<span class="st">"temperature"</span>, <span class="st">"flu_status"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  temperature flu_status
+1        98.1      FALSE
+2        98.6      FALSE
+3       101.4       TRUE</code></pre>
+</div>
+</div>
+<p>Para extraer el valor de la primera fila y la segunda columna del marco de datos del paciente (el valor de temperatura para John Doe), ingresaría:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a> pt_data[<span class="dv">1</span>, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 98.1</code></pre>
+</div>
+</div>
+<p>Si desea más de una fila o columna de datos, puede hacerlo especificando vectores para los números de fila y columna que desea.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>pt_data[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>),<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  temperature    gender
+1        98.1 MASCULINO
+3       101.4 MASCULINO</code></pre>
+</div>
+</div>
+<p>Para extraer todas las filas o columnas, en lugar de enumerarlas todas, simplemente deje en blanco la parte de la fila o la columna.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>pt_data[, <span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "John Doe"     "Jane Doe"     "Steve Graves"</code></pre>
+</div>
+</div>
+<p>Para extraer todas las columnas de la primera fila:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>pt_data[<span class="dv">1</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  subject_name temperature flu_status    gender blood
+1     John Doe        98.1      FALSE MASCULINO     O</code></pre>
+</div>
+</div>
+<p>Y para extraer todo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>pt_data[ , ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  subject_name temperature flu_status    gender blood
+1     John Doe        98.1      FALSE MASCULINO     O
+2     Jane Doe        98.6      FALSE  FEMENINO    AB
+3 Steve Graves       101.4       TRUE MASCULINO     A</code></pre>
+</div>
+</div>
+<p>Se puede acceder a las columnas por nombre en lugar de por posición, y se pueden usar signos negativos para excluir filas o columnas de datos. Por lo tanto, la declaración:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>pt_data[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="fu">c</span>(<span class="st">"temperature"</span>, <span class="st">"gender"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  temperature    gender
+1        98.1 MASCULINO
+3       101.4 MASCULINO</code></pre>
+</div>
+</div>
+<p>Es equivalente a:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>pt_data[<span class="sc">-</span><span class="dv">2</span>,<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">3</span>,<span class="sc">-</span><span class="dv">5</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  temperature    gender
+1        98.1 MASCULINO
+3       101.4 MASCULINO</code></pre>
+</div>
+</div>
+</section>
+<section id="matrices-y-arreglos" class="level3">
+<h3 class="anchored" data-anchor-id="matrices-y-arreglos"><strong>Matrices y arreglos</strong></h3>
+<ul>
+<li><p>La matriz es una estructura de datos que representa una tabla bidimensional, con filas y columnas de datos.</p></li>
+<li><p>Las matrices R pueden contener cualquier tipo de datos, aunque se usan con mayor frecuencia para operaciones matemáticas y, por lo tanto, normalmente almacenan solo datos numéricos.</p></li>
+</ul>
+<p>Para crear una matriz, simplemente suministre un vector de datos matriz()función, junto con un parámetro que especifica el número de filas (fila)o número de columnas (ncol).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,] "a"  "c" 
+[2,] "b"  "d" </code></pre>
+</div>
+</div>
+<p>Esto es equivalente a la matriz producida usando ncol = 2:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,] "a"  "c" 
+[2,] "b"  "d" </code></pre>
+</div>
+</div>
+<p>Con seis valores, solicitar dos filas crea una matriz con tres columnas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>, <span class="st">'e'</span>, <span class="st">'f'</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,] "a"  "c"  "e" 
+[2,] "b"  "d"  "f" </code></pre>
+</div>
+</div>
+<p>De manera similar, solicitar dos columnas crea una matriz con tres filas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>, <span class="st">'e'</span>, <span class="st">'f'</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,] "a"  "d" 
+[2,] "b"  "e" 
+[3,] "c"  "f" </code></pre>
+</div>
+</div>
+<p>Del mismo modo, se pueden solicitar filas o columnas enteras:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>m[<span class="dv">1</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a" "d"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>m[, <span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a" "b" "c"</code></pre>
+</div>
+</div>
+</section>
+<section id="gestión-de-datos-con-r" class="level3">
+<h3 class="anchored" data-anchor-id="gestión-de-datos-con-r"><strong>Gestión de datos con R</strong></h3>
+</section>
 </section>
 </section>
 
