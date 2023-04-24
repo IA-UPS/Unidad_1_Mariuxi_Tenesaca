@@ -1,0 +1,486 @@
+---
+title: "Informe de regresión lineal simple y múltiple: Resumen, Laboratorio Capítulos 2 y 3 ( An Introduction to Statistical Learning)"
+format: html
+editor: visual
+author: "Mariuxi Maribel Tenesaca Yuqui"
+---
+
+## Capítulo 2: Aprendizaje Estadístico
+
+*El aprendizaje estadístico se refiere a un conjunto de enfoques para estimar f.*
+
+-   Un ejemplo de un estudio de aprendizaje estadístico que investiga la correlación entre la publicidad y las ventas de productos en diferentes mercados.
+
+-   Los datos de publicidad y ventas se tabulan y se busca un modelo preciso para pronosticar las ventas en función de los presupuestos de publicidad en televisión, radio y periódicos.
+
+-    El presupuesto de publicidad es la variable de entrada (o independiente) etiquetada como X1, X2 y X3, mientras que las ventas son la variable de salida (o dependiente) etiquetada como Y.
+
+-   Los términos "predictor", "variable independiente", "función" o simplemente "variable ". " se usan indistintamente para referirse a la variable de entrada, mientras que la variable de salida también se puede llamar "respuesta" o "variable dependiente".
+
+### **¿Por qué estimar f?**
+
+Hay dos razones principales por las que podemos querer estimar f:
+
+1.  Predicción
+
+2.  Inferencia
+
+**Predicción**
+
+En muchas situaciones, se dispone fácilmente de un conjunto de entradas X, pero la salida Y no puede obtenerse fácilmente.
+
+En este caso, Dado que el término de error tiene un valor medio a cero, podemos predecir Y utilizando
+
+Yˆ = ˆf(X),
+
+-   Donde ˆf representa nuestra estimación para f
+
+-   Yˆ representa la predicción resultante para Y .
+
+-   En este entorno, ˆf suele tratarse como una caja negra, en el sentido de que en el sentido de que a uno no le suele preocupar la forma exacta de ˆf, siempre y cuando produzca predicciones precisas para Y.
+
+### **Interferencia**
+
+En este contexto, se puede predecir Y utilizando una estimación para f, y Y representa la predicción resultante para Y.
+
+Si el objetivo es entender la asociación entre Y y X1,\...,Xp, se debe estimar f, pero no necesariamente para hacer predicciones para Y. En este caso, no se puede tratar ˆf como una caja negra, ya que se necesita conocer su forma exacta.
+
+Algunas preguntas que pueden surgir son:
+
+-   ¿Qué predictores se asocian a la respuesta?
+
+ A menudo que sólo una pequeña fracción de los predictores disponibles están con Y
+
+-   ¿Cuál es la relación entre la respuesta y cada predictor?
+
+1.  Algunos predictores pueden tener una relación positiva con Y.
+
+2.  La relación entre la respuesta y un predictor.
+
+3.  También puede depender de los valores de los demás predictores.
+
+-   ¿Puede resumirse adecuadamente la relación entre Y y cada predictor utilizando una ecuación lineal, o es la relación más complicada?
+
+Históricamente, la mayoría de los métodos para estimar f han adoptado una forma lineal.
+
+*En algunos casos, se pueden modelar la predicción y la inferencia.*
+
+Dependiendo del objetivo final de nuestro análisis, pueden ser apropiados diferentes métodos para estimar f.
+
+-   Por ejemplo, los modelos lineales permiten inferencias relativamente simples e interpretables, pero es posible que no proporcionen predicciones tan precisas como algunos métodos no lineales.
+
+### **¿Cómo estimamos f?**
+
+Siempre supondremos que hemos observado un conjunto de n puntos de datos diferentes puntos de datos. Por ejemplo, en la Figura 1 observamos n = 30 puntos de datos.
+
+![](images/figura1.png){fig-align="center" width="286"}
+
+Estas observaciones se denominan datos de entrenamiento, ya se usarán para:
+
+-    Entrenar o enseñar.
+
+Para entrenar, o enseñar, a nuestro método a estimar f.
+
+-   yi representa la variable de respuesta de la i-ésima observación.
+
+Los datos de entrenamiento son:
+
+-   {(x1, y1),(x2, y2),\...,(xn, yn)} donde xi = (xi1, xi2,\...,xip)T .
+
+Nuestro objetivo es aplicar un método de aprendizaje estadístico a los datos de entrenamiento
+
+para estimar la función desconocida f.
+
+-   Es decir encontrar una función ˆf tal que Y ≈ ˆf(X) para cualquier observación (X, Y ). En términos generales
+
+### **Métodos paramétricos**
+
+Los métodos paramétricos implican un enfoque basado en modelos de dos pasos.
+
+*La forma funcional*
+
+Por ejemplo, una suposición muy sencilla es que f es lineal en X:
+
+f(X) = β0 + β1X1 + β2X2 + \-\-- + βpXp
+
+Después de seleccionar un modelo, se necesita un procedimiento que use los datos de entrenamiento para ajustar o entrenar el modelo. En el caso del modelo lineal, necesitamos estimar los parámetros β0, β1,\..., βp para encontrar los valores que ajusten los datos.
+
+Es decir, queremos encontrar valores de estos parámetros tales que
+
+Y ≈ β0 + β1X1 + β2X2 + \-\-- + βpXp.
+
+El enfoque más común para ajustar el modelo lineal es el método de mínimos cuadrados ordinarios.
+
+### **Métodos no paramétricos**
+
+Los métodos no paramétricos no hacen suposiciones explícitas sobre la forma funcional de f.
+
+En su lugar, buscan una estimación de f que se acerque lo más posible a los puntos de datos sin que sea demasiado aproximada u ondulada.
+
+Los puntos de datos sin ser demasiado aproximados o imprecisos.
+
+Los enfoques no paramétricos no se hace ninguna suposición sobre la forma de f. Sin embargo, los enfoques no paramétricos tienen una gran desventaja.
+
+Desventaja: dado que no reducen el problema de estimar f a un numero de parámetros, se necesita un gran número de observaciones (muchas más de las que se suelen necesitar para un método paramétrico).
+
+En la Figura 2 se muestra un ejemplo de ajuste no paramétrico de los datos de ingresos.
+
+![En amarillo se muestra un ajuste suave de placa delgada a los datos de Ingresos.](images/figura2.png){fig-align="center" width="327"}
+
+### **El equilibrio entre la precisión de la predicción y la interpretabilidad del modelo**
+
+-   La regresión lineal es un enfoque relativamente inflexible, porque sólo puede generar funciones lineales.
+
+-   Otros métodos, como los splines de placa delgada: Son considerablemente más flexibles porque pueden generar una gama de formas posibles para estimar f.
+
+**¿Por qué utilizar un método más restrictivo en lugar de un enfoque más flexible?**
+
+*Hay varias razones por las que podríamos preferir un modelo más restrictivo.*
+
+Si nos interesa principalmente la inferencia, los modelos restrictivos son mucho más interpretables.
+
+-   Por ejemplo, cuando el objetivo es la inferencia, el modelo lineal lineal puede ser una buena elección, ya que será bastante fácil entender la relación entre Y y X1, X2,\...,Xp.
+
+En general, a medida que aumenta la flexibilidad de un método, disminuye su interpretabilidad.
+
+![Una representación del compromiso entre flexibilidad e interpretabilidad, utilizando diferentes métodos de aprendizaje estadístico.](images/figura3.png){fig-align="center" width="412"}
+
+### **Aprendizaje supervisado frente a aprendizaje no supervisado** 
+
+La mayoría de los problemas de aprendizaje estadístico pertenecen a una de estas dos categorías: **supervisados o no supervisados**.
+
+-   Para cada observación de predictor(es) xi, i = 1,\...,n hay una medida de respuesta asociada yi de respuesta yi.
+
+Objetivo: Ajustar un modelo que relacione la respuesta con los predictores, con el fin de predecir con exactitud la respuesta para futuras de la (predicción) o comprender mejor la relación entre la respuesta y los predictores.
+
+*Métodos clásicos de aprendizaje estadístico que operan en el ámbito de la supervisión:*
+
+1.  Regresión lineal
+
+2.  La regresión logística
+
+3.  GAM
+
+4.  Boosting
+
+5.  Máquinas de regresión de vec- soporte
+
+-   El aprendizaje no supervisado describe la situación algo más difícil en la que para cada observación i = 1,\...,n.
+
+Ejemplo: Un vector de medidas xi, pero ninguna respuesta asociada yi. No es posible ajustar un modelo de regresión lineal, ya que no existe una variable de respuesta
+
+-   En este contexto, en cierto modo trabajamos a ciegas
+
+-   La situación se denomina no supervisada porque carecemos de una variable de respuesta que pueda supervisar nuestro análisis.
+
+### **Problemas de regresión frente a problemas de clasificación**
+
+En estadística, las variables pueden ser cuantitativas o cualitativas (también conocidas como categóricas). Las variables cuantitativas toman valores numéricos, mientras que las variables cualitativas toman valores de diferentes categorías.
+
+Los problemas con una variable de respuesta cuantitativa se denominan problemas de regresión, mientras que los problemas con una variable de respuesta cualitativa se denominan problemas de clasificación. Sin embargo, la distinción no siempre es clara, ya que en ambos casos se pueden utilizar ciertos métodos, como la regresión logística.
+
+La elección del método de aprendizaje estadístico viene determinada por la variable respuesta (cuantitativa o cualitativa), mientras que el tipo de variable predictora (cualitativa o cuantitativa) se considera secundaria.
+
+Independientemente del tipo de predictor, la mayoría de las técnicas de aprendizaje estadístico se pueden utilizar siempre que los predictores cualitativos estén codificados correctamente antes del análisis.
+
+### **Evaluación de la precisión de los modelos**
+
+Ningún método único es adecuado para todos los conjuntos de datos posibles, por lo que es importante elegir el método apropiado para cada conjunto de datos en particular.
+
+### **Medir la calidad del ajuste**
+
+Para evaluar el rendimiento de un método de aprendizaje estadístico en un conjunto de datos determinado, necesitamos algún modo de medir hasta qué punto sus predicciones:
+
+Se necesita cuantificar hasta qué punto medida en que el valor de respuesta predicho para una observación dada se aproxima el verdadero valor de respuesta para esa observación.
+
+En el ámbito de la regresión, la medida más utilizada es el error cuadrático medio (ECM), dado por:
+
+![](images/figura4.png){fig-align="center" width="260"}
+
+-   ˆf(xi) es la predicción que da ˆf para la i-ésima observación. El MSE será pequeño si las respuestas predichas están muy cerca de las respuestas verdaderas.
+
+-   Será grande si las respuestas pronosticadas y verdaderas para algunas observaciones difieren significativamente.
+
+El error cuadrático medio (MSE) se calcula utilizando los datos de entrenamiento utilizados para ajustar el modelo, por lo que debería llamarse MSE de entrenamiento con mayor precisión. Pero, en general, no nos importa qué tan bien funciona el método en los datos de entrenamiento.
+
+En cambio, estamos interesados ​​en la precisión de las predicciones que obtenemos al aplicar nuestro método a datos de prueba nunca antes vistos. Esto es importante porque nos interesa cómo manejará el método los datos futuros, no cómo manejará los datos pasados ​​que se usaron para entrenar el modelo.
+
+En la práctica, suele ser fácil calcular el MSE de entrenamiento:
+
+-   Estimar el MSE de prueba es mucho más difícil porque los datos de prueba generalmente no están disponibles.
+
+-   El nivel de elasticidad correspondiente al modelo con el MSE de prueba más pequeño puede variar significativamente entre los conjuntos de datos.
+
+-   Un enfoque importante es la validación cruzada, que es un método cruzado que utiliza datos de entrenamiento para estimar el MSE de una prueba.
+
+### **La relación entre sesgo y varianza**
+
+Es posible demostrar que el MSE de prueba esperado, para un valor dado x0, siempre puede descomponerse en la suma de los valores de x0 y x0.
+
+Siempre puede descomponerse en la suma de tres cantidades fundamentales: la varianza de ˆf(x0), el sesgo al cuadrado de ˆf(x0) y la varianza del error error ϵ. Es decir:
+
+![](images/figura5.png){fig-align="center" width="367" height="38"}
+
+La notación E (Y0 - ˆf(x0) define el MSE de prueba esperado en x0, se refiere al MSE de prueba medio que obtendríamos si probáramos repetidamente MSE.
+
+Se estima f utilizando un gran número de conjuntos de entrenamiento.
+
+El término "varianza" se refiere a la cantidad en la que cambiaría la estimación de f si se usara un conjunto de datos de entrenamiento diferente para estimarla.
+
+En general, los métodos estadísticos más flexibles marcan una mayor diferencia.
+
+Si el método tiene una varianza alta, pequeños cambios en los datos de entrenamiento pueden causar grandes cambios en la estimación de \^f.
+
+La mayor flexibilidad de un modelo estadístico afecta su varianza y sesgo y cómo esto afecta las pruebas de MSE.
+
+A medida que aumenta la elasticidad, el sesgo tiende a disminuir más rápido que la varianza, lo que hace que disminuya el MSE de la prueba inicial. Pero después de cierto punto, la varianza aumenta significativamente y el MSE de la prueba comienza a aumentar.
+
+La relación entre el sesgo, la varianza y el MSE del conjunto de prueba que se da en la ecuación y se muestra en la figura 6 se denomina compromiso sesgo-varianza.
+
+![](images/figura6-01.png){fig-align="center" width="336"}
+
+La relación entre sesgo y varianza es conocida como compromiso sesgo-varianza.
+
+Para lograr un buen rendimiento del conjunto de prueba de un método de aprendizaje estadístico es necesario encontrar un equilibrio entre una varianza baja y un sesgo al cuadrado bajo. Esto es difícil de lograr ya que es fácil obtener métodos con baja varianza, pero alto sesgo o métodos con bajo sesgo, pero alta varianza.
+
+Encontrar un método con ambos baja varianza y sesgo al cuadrado bajo es un desafío importante en el aprendizaje estadístico.
+
+**El entorno de clasificación**
+
+Muchos de los conceptos que hemos encontrado, como como el equilibrio entre sesgo y varianza, se transfieren al entorno de clasificación con sólo algunas modificaciones debidas al hecho de que yi ya no es cuantitativo.
+
+Supongamos que queremos estimar f a partir de observaciones de entrenamiento {(x1, y1),\...,(xn, yn)}, donde ahora y1,\...,yn son cualitativas.
+
+El enfoque más común para cuantificar la precisión de nuestra estimación ˆf es la tasa de error de entrenamiento, la proporción de errores que se cometen si aplicamos la tasa de error nuestra estimación ˆf a las observaciones de entrenamiento:
+
+![](images/figura7.png){fig-align="center" width="178"}
+
+### **El clasificador de Bayes**
+
+Simplemente hay que asignar una observación de prueba con el vector predictor x0 a la clase j para la que:
+
+![](images/figura8.png){fig-align="center" width="167"}
+
+Es una probabilidad condicional: probabilidad de que Y = j, dado el vector predictor observado x0.
+
+Este clasificador tan sencillo se denomina clasificador de Bayes. En un problema de dos clases en el que sólo hay dos posibles valores de respuesta, la clase 1 o la clase 2.
+
+![FIGURA 9. Un conjunto de datos simulados compuesto por 100 observaciones en cada uno de dos grupos, indicados en azul y en naranja. La línea discontinua morada representa el límite de decisión de Bayes.](images/figura9.png){fig-align="center" width="272"}
+
+### **K-Nearest Neighbors**
+
+Los clasificadores de Bayes son buenos para predecir respuestas cualitativas, pero en realidad no conocemos la distribución condicional de Y dada X, por lo que no se puede calcular. Como tal, es un estándar de oro inalcanzable contra el cual comparar otros métodos.
+
+ Uno de estos métodos es el K-vecino más cercano (KNN), que estima la distribución condicional de Y dada X y clasifica las observaciones dadas según la clase con la probabilidad estimada más alta. Dado un entero K y una observación de prueba x0, el clasificador KNN identifica K puntos en los datos de entrenamiento que están más cerca de x0 y estima la probabilidad condicional de la clase j como la fracción N0 de puntos con un valor de respuesta igual A J.
+
+A continuación, estima la probabilidad condicional de la clase j como la fracción de puntos en N0 cuyos valores de respuesta son iguales a j:
+
+![](images/figura10.png){fig-align="center" width="245"}
+
+El éxito de cualquier método de aprendizaje estadístico depende de elegir el nivel adecuado de flexibilidad tanto en la regresión como en la clasificación.
+
+ Esto implica lograr un equilibrio entre el sesgo y la varianza, lo que puede ser difícil debido a la forma de U del error de prueba.
+
+## **Capítulo 3: Regresión Lineal**
+
+La regresión lineal es una herramienta útil para predecir una respuesta cuantitativa
+
+### **Regresión lineal simple**
+
+La regresión lineal simple se enfoca para predecir una respuesta cuantitativa Y en función de una única variable predictora X. Supone que existe una relación aproximadamente lineal entre X e Y y se puede escribir esta relación matemáticamente como a continuación:
+
+-   *Relación lineal: Y ≈ β0 + β1X*
+
+### **Estimación de los coeficientes**
+
+En la práctica, β0 y β1 son desconocidos. Así que antes de poder utilizar Y ≈ β0 + β1X para hacer
+
+predicciones, debemos utilizar datos para estimar los coeficientes. Sea
+
+*(x1, y1), (x2, y2),\..., (xn, yn)*
+
+Representan n pares de observaciones, cada uno de los cuales consiste en una medición de X y una medición de Y.
+
+-   Ejemplo: De publicidad, el conjunto de datos consiste en presupuestos de publicidad Televisión y ventas de productos para n=200 mercados diferentes. El objetivo es obtener los coeficientes de la ecuación lineal (3.1) para ajustar bien los datos disponibles. Esto se logra encontrando la intersección y la pendiente que el permitan dibujar una línea lo más cerca posible de los 200 puntos de datos. Para medir esta cercanía se utiliza el criterio de mínimos cuadrados, que se explica en este capítulo.
+
+![FIGURA 11. Para los datos de publicidad, se muestra el ajuste por mínimos cuadrados de la regresión de las ventas en la televisión. El ajuste se obtiene minimizando la suma de cuadrados residuales. cuadrados.](images/figura11.png){fig-align="center" width="396"}
+
+### **Evaluación de la precisión de las estimaciones del coeficiente**
+
+Si f debe aproximarse mediante una función lineal, podemos escribir esta relación como:
+
+Y = β0 + β1X + ϵ
+
+-   β0 es el término de intercepción, es decir, el valor esperado de Y cuando X = 0.
+
+-   β1 es la pendiente, es decir, el aumento medio de Y asociado a un aumento de una unidad en X.
+
+-   El término de error es un cajón de sastre para lo que no vemos con este método: la verdadera relación probablemente no sea lineal, puede haber otras variables que causen variación en Y , y puede haber error de medición.
+
+-   Normalmente suponemos que el término de error es independiente de X.
+
+![Figura 12. Un conjunto de datos simulados. Izquierda: La línea roja representa la relación verdadera, f(X)=2+3X, que se conoce como línea de regresión poblacional. La línea azul es la línea de mínimos cuadrados; es la estimación de mínimos cuadrados para f(X) basada en los datos observados, mostrados en negro.](images/figura12.png){fig-align="center" width="395"}
+
+### **Evaluación de la precisión del modelo**
+
+Una vez rechazada la hipótesis nula en favor de la hipótesis alternativa, es natural querer cuantificar en qué medida el modelo se ajusta a los datos.
+
+La calidad del ajuste de una regresión lineal suele evaluarse mediante dos magnitudes relacionadas: el error estándar residual (RSE) y el R2.
+
+### **Error estándar residual**
+
+Hay un término de error ϵ. Debido a la presencia de estos términos de error, aunque conociéramos la verdadera recta de regresión (es decir, aunque se conocieran β0 y β1), no podríamos predecir perfectamente Y a partir de X.
+
+![](images/fig13.png){fig-align="center" width="289"}
+
+El RSE es una estimación de la desviación típica de ϵ. A grandes rasgos, es la cantidad media en que la respuesta se desviará de la verdadera línea de regresión.
+
+ **Se calcula mediante la fórmula:**
+
+![](images/fig14.png){fig-align="center" width="266"}
+
+### **Estadística R2**
+
+El RSE proporciona una medida absoluta de la falta de ajuste del modelo a los datos. Pero como se mide en unidades de Y, no siempre está claro qué es un buen RSE.
+
+El estadístico R2 proporciona una medida alternativa de ajuste. Adopta la forma de una proporción (la proporción de varianza explicada), por lo que siempre toma un valor entre 0 y 1, y es independiente de la escala de Y.
+
+*Para calcular R2, utilizamos la fórmula:*
+
+![](images/fig15.png){fig-align="center" width="207"}
+
+El estadístico R2 tiene una ventaja explicativa sobre el error estándar del residual (SSR) en que, a diferencia del RSE, siempre está entre 0 y 1. Sin embargo, sigue siendo difícil determinar qué es un buen valor para R2 y generalmente dependerá del uso particular.
+
+Por ejemplo, en algunos problemas de física, se sabe que los datos en realidad provienen de un modelo lineal con residuos muy pequeños. En este caso, esperaría que un valor de R2 estuviera muy cerca de 1, mientras que un valor de R2 mucho más bajo podría indicar un problema grave en el experimento que generó los datos.
+
+### **Regresión lineal múltiple**
+
+Con la regresión lineal simple, la respuesta se puede predecir a partir de una sola variable predictora, pero en la práctica suele haber más de una.
+
+Se puede realizar una regresión lineal simple para cada predictor para este propósito, pero no es del todo satisfactoria porque no permite un predictor y cada ecuación de regresión ignora los otros predictores.
+
+Por el contrario, los modelos de regresión lineal simple se pueden ampliar para adaptarse a múltiples predictores al proporcionar coeficientes de pendiente separados para cada predictor en un solo modelo.
+
+El modelo de regresión lineal adopta la forma:
+
+Y = β0 + β1X1 + β2X2 + \-\-- + βpXp + ϵ, (3.19)
+
+Xj representa el j-ésimo predictor y βj cuantifica la asociación entre esa variable y la respuesta.
+
+Interpretamos βj como el efecto medio efecto
+
+### **Estimación de los coeficientes de regresión**
+
+Como en el caso de la regresión lineal simple, los coeficientes de regresión β0, β1,\..., βp en (3.19) son desconocidos y deben estimarse. Dada las estimaciones βˆ0, βˆ1,\..., βˆp, podemos hacer predicciones utilizando la fórmula:
+
+yˆ = βˆ0 + βˆ1x1 + βˆ2x2 + \-\-- + βˆpxp
+
+Los parámetros se estiman utilizando el mismo enfoque de mínimos cuadrados que vimos en el contexto de la regresión lineal simple. Elegimos β0, β1,\..., βp para minimizar la suma de los residuos al cuadrado:
+
+![](images/fig16.png){fig-align="center" width="233"}
+
+Ejemplo de ajuste de mínimos cuadrados a un conjunto de datos con dos predictores.
+
+![Figura 17. En un entorno tridimensional, con dos predictores y una respuesta, la línea de regresión por mínimos cuadrados se convierte en un plano.](images/fig17.png){fig-align="center" width="322"}
+
+Los coeficientes que minimizan la ecuación son los estimados de los coeficientes de regresión de mínimos cuadrados múltiples. Estos estimados tienen formas complicadas que son más fácilmente representadas mediante álgebra matricial.
+
+### **Algunas cuestiones importantes**
+
+Cuando realizamos una regresión lineal múltiple, normalmente nos interesa responder a algunas preguntas importantes.
+
+1.  ¿Es útil al menos uno de los predictores X1, X2,\...,Xp para predecir la respuesta?
+
+2.  ¿Ayudan todos los predictores a explicar Y o sólo es útil un subconjunto de los predictores?
+
+3.  ¿En qué medida se ajusta el modelo a los datos?
+
+4.  Dado un conjunto de valores predictores, ¿qué valor de respuesta deberíamos predecir?
+
+5.  ¿Cuál es la precisión de nuestra predicción?
+
+#### **¿Existe una relación entre la respuesta y los predictores?**
+
+En el marco de la regresión lineal simple, para determinar relación entre la respuesta y el predictor, basta con comprobar si β1 = 0.
+
+Podemos simplemente comprobar si β1 = 0. En el escenario de regresión múltiple con p predictores, tenemos que preguntarnos si todos los coeficientes de regresión son cero, es decir, si β1 = β2 = \-\-- = βp = 0.
+
+Como en la regresión lineal simple, utilizamos una prueba de hipótesis para responder a esta pregunta. Probamos la hipótesis nula
+
+H0 : β1 = β2 = \-\-- = βp = 0
+
+Frente a la alternativa Ha : al menos una βj es distinta de cero.
+
+Esta prueba de hipótesis se realiza calculando el estadístico F, con lo siguiente:
+
+![](images/fig18.png){fig-align="center" width="165"}
+
+-   Usar el estadístico F para probar cualquier relación entre el predictor y la respuesta es válido cuando p es relativamente pequeño y ciertamente pequeño en comparación con n. Pero a veces tenemos muchas variables. Si p\>n, entonces hay más coeficientes βj para estimar que observaciones para estimarlos.
+
+-   En este caso, ni siquiera podemos ajustar Uno modelo de regresión lineal múltiple Usando mínimos cuadrados, por lo que no podemos usar el estadístico F ni la mayoría de los otros conceptos que hemos visto hasta ahora en este capítulo.
+
+-   Sí p es grande, se pueden usar algunos de los métodos discutidos en la siguiente sección, como la selección hacia adelante.
+
+#### **Variables importantes**
+
+El capítulo presenta tres técnicas para la selección de variables en modelos de regresión múltiple:
+
+-   *Selección hacia adelante, selección hacia atrás y selección mixta.*
+
+En la selección directa, comenzamos con Uno modelo vacío y agregamos un predictor que minimiza el RSS. A continuación, agregue las variables predictoras que reducen el RSS al nuevo modelo bivariado. Este proceso continúa hasta que se cumple la regla de parada.
+
+Con la selección posterior comenzamos con todos los predictores y eliminamos el predictor con el mayor valor de p, es decir, el predictor menos estadísticamente significativo. Este proceso continúa hasta que se cumple la regla de parada.
+
+La selección mixta es una combinación de selección positiva y negativa. Comenzamos sin predictores en el modelo y agregamos predictores que brindan el mejor ajuste. Continuamos agregando predictores uno a la vez, y si en algún momento el valor p de un predictor aumenta más de un cierto umbral, ese predictor se elimina del modelo. Continuamos haciendo esto de un lado a otro hasta que todos los predictores en el modelo tengan valores p suficientemente bajos y todos los predictores fuera del modelo tengan valores p altos si se agregan al modelo.
+
+#### **Predicciones**
+
+Una vez que hemos ajustado el modelo de regresión múltiple. Para predecir la respuesta Y a partir de un conjunto de valores de los predictores X1, X2, \...,Xp.
+
+Sin embargo, hay tres tipos de incertidumbre asociada a esta predicción.
+
+Las estimaciones de los coeficientes βˆ0, βˆ1,\..., βˆp son estimaciones de β0, β1,\..., βp.
+
+Es decir, el plano de mínimos cuadrados
+
+*Yˆ = βˆ0 + βˆ1X1 + \-\-- + βˆpXp*
+
+Es sólo una estimación del verdadero plano de regresión de la población
+
+*f(X) = β0 + β1X1 + \-\-- + βpXp.*
+
+La inexactitud de las estimaciones de los coeficientes está relacionada con el error reducible.
+
+Podemos calcular un intervalo de confianza para determinar lo cerca que estará *Yˆ de f(X).*
+
+En la práctica, asumir que un modelo lineal de f(X) eso casi siempre una aproximación de la realidad introduce una fuente adicional de error potencialmente reducible llamada sesgo del modelo. Usando el modelo lineal, estimamos la mejor aproximación lineal de la superficie real. Pero aquí ignoramos esta diferencia y actuamos como si el modelo lineal fuera correcto.
+
+### **Predictores cualitativos**
+
+Los predictores cualitativos se representan como variables ficticias en la tabla de datos. Describe cómo usar estas variables ficticias para modelar las relaciones entre los predictores cualitativos y las respuestas. Además, existen consideraciones especiales para el ajuste de modelos con predictores cuantitativos y cualitativos, incluida la interpretación de coeficientes.
+
+#### **Predictores con sólo dos niveles**
+
+Si deseamos investigar las diferencias en el saldo de la tarjeta de crédito entre aquellos que poseen una casa y aquellos que no, podemos incorporar un predictor cualitativo o factor en nuestro modelo de regresión.
+
+Si el factor solo tiene dos niveles o valores posibles, entonces es muy simple incorporarlo en el modelo. Simplemente creamos una variable indicadora o variable dummy que toma dos posibles valores numéricos.
+
+Por ejemplo, en base a la variable own, podemos crear una nueva variable que tome la siguiente forma:
+
+![](images/f19.png){fig-align="center" width="333"}
+
+Utilizar esta variable como predictor en la ecuación de regresión. El resultado en el modelo:
+
+![](images/f20.png){fig-align="center" width="353" height="47"}
+
+La figura 21 muestra el conjunto de datos de crédito contiene información sobre el saldo, la edad
+
+tarjetas, educación, ingresos, límite y calificación de una serie de clientes potenciales
+
+![Figura 21. Datos credito](images/f21.png){fig-align="center" width="308"}
+
+#### **Predictores cualitativos con más de dos niveles**
+
+Cuando un predictor cualitativo tiene más de dos niveles, una única variable ficticia no puede representar todos los valores posibles.
+
+No puede representar todos los valores posibles. En esta situación, se debe crear variables ficticias adicionales.
