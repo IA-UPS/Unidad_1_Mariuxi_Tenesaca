@@ -682,6 +682,375 @@ Levels: A B AB O</code></pre>
 </ul>
 <p>A veces, los nombres de las variables en los conjuntos de datos no tienen sentido y pueden requerir más investigación para comprender lo que realmente representan. Si bien los nombres pueden ser útiles, es importante ser selectivo y verificar las etiquetas de las variables.</p>
 </section>
+<section id="explorando-variables-numéricas" class="level3">
+<h3 class="anchored" data-anchor-id="explorando-variables-numéricas"><strong>Explorando variables numéricas</strong></h3>
+<p><strong>La función summary()</strong> muestra varias estadísticas resumidas comunes.</p>
+<p>Ejemplo una sola característica del año:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(usedcars<span class="sc">$</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   2000    2008    2009    2009    2010    2012 </code></pre>
+</div>
+</div>
+<p>También podemos usar <strong>la función summary()</strong> para obtener estadísticas de resumen para varias variables numéricas al mismo tiempo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(usedcars[<span class="fu">c</span>(<span class="st">"price"</span>, <span class="st">"mileage"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     price          mileage      
+ Min.   : 3800   Min.   :  4867  
+ 1st Qu.:10995   1st Qu.: 27200  
+ Median :13592   Median : 36385  
+ Mean   :12962   Mean   : 44261  
+ 3rd Qu.:14904   3rd Qu.: 55125  
+ Max.   :21992   Max.   :151479  </code></pre>
+</div>
+</div>
+<p>La función proporciona herramientas simples para investigar datos.</p>
+<ul>
+<li>Se pueden dividir en dos tipos:</li>
+</ul>
+<ol type="1">
+<li><p>Medidas de centro</p></li>
+<li><p>Medidas de dispersión</p></li>
+</ol>
+</section>
+<section id="medición-de-la-tendencia-central-media-y-mediana" class="level3">
+<h3 class="anchored" data-anchor-id="medición-de-la-tendencia-central-media-y-mediana"><strong>Medición de la tendencia central: media y mediana</strong></h3>
+<p>Las medidas de tendencia central son estadísticas que se utilizan para encontrar un valor en medio de un conjunto de datos, siendo la media la medida más familiar y comúnmente utilizada. El promedio es la suma de todos los valores dividida por el número de valores y representa el valor típico en el grupo. Sirve como punto de referencia para juzgar otros valores en el conjunto.</p>
+<p>Por ejemplo, para calcular el ingreso medio en un grupo de tres personas con ingresos de $35 000, $45 000 y $55 000, podríamos escribir:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a> (<span class="dv">36000</span> <span class="sc">+</span> <span class="dv">44000</span> <span class="sc">+</span> <span class="dv">56000</span>) <span class="sc">/</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 45333.33</code></pre>
+</div>
+</div>
+<ul>
+<li>La función <strong>mean()</strong> calcula la media de un vector de números:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">36000</span>, <span class="dv">44000</span>, <span class="dv">56000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 45333.33</code></pre>
+</div>
+</div>
+<p>El ingreso medio de este grupo de personas es de $45.333,33.</p>
+<ul>
+<li>La mediana, que es el valor que aparece en la mitad de una lista ordenada de valores. R proporciona la función <strong>median()</strong>, podemos aplicar a nuestros datos salariales como se muestra en el siguiente ejemplo:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(<span class="fu">c</span>(<span class="dv">36000</span>, <span class="dv">44000</span>, <span class="dv">56000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 44000</code></pre>
+</div>
+</div>
+</section>
+<section id="medición-de-la-dispersión-cuartiles-y-el-resumen-de-cinco-números" class="level3">
+<h3 class="anchored" data-anchor-id="medición-de-la-dispersión-cuartiles-y-el-resumen-de-cinco-números"><strong>Medición de la dispersión: cuartiles y el resumen de cinco números</strong></h3>
+<p>Medir la media y la mediana es útil para resumir rápidamente los datos, pero no nos proporciona información sobre la diversidad de los mismos.</p>
+<p>Para medir la dispersión, es necesario utilizar estadísticas que se ocupen de la variabilidad en los datos.</p>
+<p>El resumen de cinco números es un conjunto de cinco estadísticas que representan la dispersión de un conjunto de datos:</p>
+<ol type="1">
+<li><p>Mínimo (Min.)</p></li>
+<li><p>Primer cuartil o Q1 (1st Qu.)</p></li>
+<li><p>Mediana o Q2 (Median)</p></li>
+<li><p>Tercer cuartil o Q3 (3rd Qu.)</p></li>
+<li><p>Máximo (Max.)</p></li>
+</ol>
+<p>El lapso entre el valor mínimo y máximo se conoce como range.</p>
+<ul>
+<li>La función <strong>range()</strong> devuelve tanto el valor mínimo como el máximo.</li>
+</ul>
+<p>Ejemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">range</span>(usedcars<span class="sc">$</span>price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  3800 21992</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">range</span>(usedcars<span class="sc">$</span>price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18192</code></pre>
+</div>
+</div>
+<p>Los cuartiles primero y tercero, Q1 y Q3, se refieren al valor por debajo o por encima del cual se encuentra una cuarta parte de los valores La diferencia entre Q1 y Q3:</p>
+<p>Se conoce como rango intercuartil (IQR), y se puede calcular con la <strong>función IQR()</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(usedcars<span class="sc">$</span>price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3909.5</code></pre>
+</div>
+</div>
+<p>La función <strong>quantile()</strong> devuelve el resumen de cinco números.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">quantile</span>(usedcars<span class="sc">$</span>price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     0%     25%     50%     75%    100% 
+ 3800.0 10995.0 13591.5 14904.5 21992.0 </code></pre>
+</div>
+</div>
+<p>Si especificamos un adicional <strong>probs</strong> parámetro usando un vector que denota puntos de corte, podemos obtener cuantiles arbitrarios, como los percentiles 1 y 99:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">quantile</span>(usedcars<span class="sc">$</span>price, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.99</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      1%      99% 
+ 5428.69 20505.00 </code></pre>
+</div>
+</div>
+<p>La función de secuencia <strong>seq()</strong> se utiliza para generar vectores de valores espaciados uniformemente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(usedcars<span class="sc">$</span>price, <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     0%     20%     40%     60%     80%    100% 
+ 3800.0 10759.4 12993.8 13992.0 14999.0 21992.0 </code></pre>
+</div>
+</div>
+</section>
+<section id="visualización-de-variables-numéricas-diagramas-de-caja" class="level3">
+<h3 class="anchored" data-anchor-id="visualización-de-variables-numéricas-diagramas-de-caja"><strong>Visualización de variables numéricas: diagramas de caja</strong></h3>
+<p>La visualización de variables numéricas es útil para diagnosticar problemas de datos. Un gráfico común es el diagrama de caja, que muestra el centro y la distribución de variables numéricas en un formato fácil de entender. Este gráfico le permite comprender rápidamente el rango y la varianza de una variable y compararla con otras variables. También se conoce como pieza de caja y bigotes.</p>
+<p>Los comandos para crear diagramas de caja de precio y kilometraje son:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(usedcars<span class="sc">$</span>price, <span class="at">main=</span><span class="st">"Boxplot of Used Car Prices"</span>,</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a> <span class="at">ylab=</span><span class="st">"Price ($)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Informe-dinámico_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(usedcars<span class="sc">$</span>mileage, <span class="at">main=</span><span class="st">"Boxplot of Used Car Mileage"</span>,</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a> <span class="at">ylab=</span><span class="st">"Odometer (mi.)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Informe-dinámico_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Al leer el gráfico de abajo hacia arriba, las líneas horizontales representan Q1, Q2 (mediana) y Q3.</p>
+<p>La mediana está representada por una línea negra alineada con los valores de precio y kilometraje en el eje vertical.</p>
+<p><strong>Importante:</strong> En diagramas simples como se muestra arriba:</p>
+<ul>
+<li><p>Los anchos de caja y bigotes son arbitrarios y no se especifican propiedades de datos.</p></li>
+<li><p>Para un análisis más complejo, es la forma y el tamaño de la caja se pueden utilizar la comparación más fácil de datos entre diferentes grupos.</p></li>
+</ul>
+</section>
+<section id="visualización-de-variables-numéricas-histogramas" class="level3">
+<h3 class="anchored" data-anchor-id="visualización-de-variables-numéricas-histogramas"><strong>Visualización de variables numéricas – histogramas</strong></h3>
+<ul>
+<li><p>Un histograma es una forma de representar gráficamente la distribución de una variable numérica.</p></li>
+<li><p>El histograma se compone de una serie de barras con alturas que indican el conteo, o frecuencia, de valores que caen dentro de cada uno de los contenedores de igual tamaño que dividen los valores.</p></li>
+<li><p>Es una herramienta útil para determinar la forma de la distribución de datos e identificar patrones o anomalías en los datos.</p></li>
+</ul>
+<p>Los comandos para crear un histograma son:</p>
+<p>La función hist() crea un histograma:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(usedcars<span class="sc">$</span>price, <span class="at">main =</span> <span class="st">"Histogram of Used Car Prices"</span>,</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a> <span class="at">xlab =</span> <span class="st">"Price ($)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Informe-dinámico_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li><p>Las líneas verticales que separan las barras, tal como están etiquetadas en el eje horizontal, indican los puntos inicial y final del rango de valores del contenedor.</p></li>
+<li><p>En el precio histograma, cada una de las 10 barras abarca un intervalo de $2,000, comenzando en $2,000 y terminando en $22,000.</p></li>
+<li><p>La barra más alta en el centro de la figura cubre el rango de $12 000 a $14 000 y tiene una frecuencia de 50.</p></li>
+<li><p>Dado que sabemos que nuestros datos incluyen 150 autos, sabemos que un tercio de todos los autos tienen un precio de $12 000 a $14 000. Casi 90 autos, más de la mitad, tienen un precio de $12,000 a $16,000.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(usedcars<span class="sc">$</span>mileage, <span class="at">main =</span> <span class="st">"Histogram of Used Car Mileage"</span>,</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a> <span class="at">xlab =</span> <span class="st">"Odometer (mi.)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Informe-dinámico_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li>El histograma kilometraje incluye ocho barras que indican intervalos de 20 000 millas cada uno, comenzando en 0 y terminando en 160 000 millas.</li>
+</ul>
+<p><em>La forma de los dos histogramas es algo diferente</em>: Parece que los precios de los autos usados tienden a dividirse equitativamente a ambos lados del medio, mientras que el kilometraje de los autos se extiende más hacia la derecha.</p>
+</section>
+<section id="comprensión-de-datos-numéricos-distribuciones-uniformes-y-normales" class="level3">
+<h3 class="anchored" data-anchor-id="comprensión-de-datos-numéricos-distribuciones-uniformes-y-normales"><strong>Comprensión de datos numéricos: distribuciones uniformes y normales</strong></h3>
+<p>La distribución de una variable describe la probabilidad de que un valor caiga dentro de varios rangos.</p>
+<p>Una distribución uniforme ocurre cuando todos los valores tienen la misma probabilidad de ocurrir. Es fácil de detectar con un histograma donde las barras tienen aproximadamente la misma altura.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/uniforme.png" class="img-fluid figure-img" width="254"></p>
+<p></p><figcaption class="figure-caption">Figura 7. Distribución uniforme</figcaption><p></p>
+</figure>
+</div>
+<p>Es importante tener en cuenta que no todos los eventos aleatorios son uniformes.</p>
+<p>Distribución normal es una distribución de datos en forma de campana. La curva de campana estereotipada se muestra en la figura 8:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/normal-01.png" class="img-fluid figure-img" width="293"></p>
+<p></p><figcaption class="figure-caption">Figura 8. Distribución normal</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="medición-de-la-dispersión-varianza-y-desviación-estándar" class="level3">
+<h3 class="anchored" data-anchor-id="medición-de-la-dispersión-varianza-y-desviación-estándar"><strong>Medición de la dispersión: varianza y desviación estándar</strong></h3>
+<p>La propagación se mide mediante una estadística llamada desviación estándar.</p>
+<p>La desviación estándar es la raíz cuadrada de la varianza y se denota por sigma como se muestra en la siguiente fórmula:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/nueve.png" class="img-fluid figure-img" width="289"></p>
+<p></p><figcaption class="figure-caption">Figura 9. Formula desviación estándar</figcaption><p></p>
+</figure>
+</div>
+<p>Para obtener la varianza y la desviación estándar se utiliza las siguientes funciones:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(usedcars<span class="sc">$</span>price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9749892</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(usedcars<span class="sc">$</span>price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3122.482</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(usedcars<span class="sc">$</span>mileage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 728033954</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(usedcars<span class="sc">$</span>mileage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 26982.1</code></pre>
+</div>
+</div>
+<ul>
+<li><p>Al interpretar la varianza, los números más grandes indican que los datos se distribuyen más ampliamente alrededor de la media.</p></li>
+<li><p>La desviación estándar indica, en promedio, cuánto difiere cada valor de la media.</p></li>
+</ul>
+</section>
+<section id="explorando-variables-categóricas" class="level3">
+<h3 class="anchored" data-anchor-id="explorando-variables-categóricas"><strong>Explorando variables categóricas</strong></h3>
+<p>Los datos categóricos se examinan mediante tablas en lugar de estadísticas de resumen.</p>
+<p>Una tabla que presenta una sola variable categórica se conoce como tabla unidireccional.</p>
+<p>La función <strong>table()</strong> se puede usar para generar tablas unidireccionales para nuestros datos de autos usados:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(usedcars<span class="sc">$</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 
+   3    1    1    1    3    2    6   11   14   42   49   16    1 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(usedcars<span class="sc">$</span>model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ SE SEL SES 
+ 78  23  49 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">table</span>(usedcars<span class="sc">$</span>color)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Black   Blue   Gold   Gray  Green    Red Silver  White Yellow 
+    35     17      1     16      5     25     32     16      3 </code></pre>
+</div>
+</div>
+<p>Los resultados de la prop.tabla() se puede combinar con otras funciones de R para transformar la salida:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>color_table <span class="ot">&lt;-</span> <span class="fu">table</span>(usedcars<span class="sc">$</span>color)</span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>color_pct <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(color_table) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(color_pct, <span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Black   Blue   Gold   Gray  Green    Red Silver  White Yellow 
+  23.3   11.3    0.7   10.7    3.3   16.7   21.3   10.7    2.0 </code></pre>
+</div>
+</div>
+</section>
+<section id="medición-de-la-tendencia-central-la-moda" class="level3">
+<h3 class="anchored" data-anchor-id="medición-de-la-tendencia-central-la-moda"><strong>Medición de la tendencia central: La moda</strong></h3>
+<ul>
+<li><p>La moda de una característica es el valor que ocurre con mayor frecuencia. Al igual que la media y la mediana, la moda es otra medida de tendencia central.</p></li>
+<li><p>A menudo se usa para datos categóricos, ya que la media y la mediana no están definidas para variables nominales.</p></li>
+</ul>
+</section>
+<section id="explorando-relaciones-entre-variables" class="level3">
+<h3 class="anchored" data-anchor-id="explorando-relaciones-entre-variables"><strong>Explorando relaciones entre variables</strong></h3>
+<p>Las relaciones de más de dos variables se llaman multivariantes relaciones.</p>
+</section>
+<section id="visualización-de-relaciones-diagramas-de-dispersión" class="level3">
+<h3 class="anchored" data-anchor-id="visualización-de-relaciones-diagramas-de-dispersión"><strong>Visualización de relaciones: Diagramas de dispersión</strong></h3>
+<ul>
+<li><p>Un diagrama de dispersión es un gráfico bidimensional que muestra una relación bidimensional entre dos funciones.</p></li>
+<li><p>Un valor de atributo se utiliza para determinar la posición horizontal del punto, mientras que el otro valor de atributo determina la posición vertical.</p></li>
+<li><p>Los patrones de ubicaciones de puntos pueden revelar asociaciones entre dos rasgos.</p></li>
+</ul>
+<p>El comando completo para crear nuestro diagrama de dispersión es:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">plot</span>(<span class="at">x =</span> usedcars<span class="sc">$</span>mileage, <span class="at">y =</span> usedcars<span class="sc">$</span>price,</span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a> <span class="at">main =</span> <span class="st">"Scatterplot of Price vs. Mileage"</span>,</span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a> <span class="at">xlab =</span> <span class="st">"Used Car Odometer (mi.)"</span>,</span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a> <span class="at">ylab =</span> <span class="st">"Used Car Price ($)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Informe-dinámico_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Al observar un diagrama de dispersión que muestra la relación entre los precios de los autos usados ​​y las lecturas del odómetro, puede ver que a medida que aumenta el valor en el eje horizontal (kilometraje), el valor en el eje vertical (precio) tiende a disminuir a medida que disminuye el valor.</p>
+<p>Esto significa que los coches con mayor kilometraje son más baratos. Es una idea que cualquier persona que haya comprado o vendido un auto usado generalmente entenderá.</p>
+<p>La fuerza de una asociación lineal entre dos variables se mide mediante una estadística conocida como correlación.</p>
+</section>
+<section id="examen-de-las-relaciones-tabulaciones-cruzadas-de-dos-factores" class="level3">
+<h3 class="anchored" data-anchor-id="examen-de-las-relaciones-tabulaciones-cruzadas-de-dos-factores"><strong>Examen de las relaciones: Tabulaciones cruzadas de dos factores</strong></h3>
+<ul>
+<li><p>Una tabulación cruzada es una herramienta para probar la relación entre dos variables nominales.</p></li>
+<li><p>Esta herramienta es similar a un gráfico de dispersión en el sentido de que le permite examinar cómo varía el valor de una variable con otra variable.</p></li>
+<li><p>Una tabulación cruzada es una tabla en la que las filas representan los niveles de una variable y las columnas representan los niveles de otra variable.</p></li>
+<li><p>El conteo en cada celda de la tabla indica el número de valores que pertenecen a una determinada combinación de filas y columnas.</p></li>
+</ul>
+<p>Instalar el tipo de paquete (gmodels):</p>
+<p><code>install.packages("gmodels")</code></p>
+<p>Después de que se instale el paquete, simplemente escriba en la biblioteca (modelos g)para cargar el paquete.</p>
+<p>Después de que se instale el paquete, simplemente escriba en la biblioteca (modelos g) para cargar el paquete.</p>
+<p>Simplificar el proyecto reduciendo el número de niveles en la variable color.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>usedcars<span class="sc">$</span>conservative <span class="ot">&lt;-</span></span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a> usedcars<span class="sc">$</span>color <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Black"</span>, <span class="st">"Gray"</span>, <span class="st">"Silver"</span>, <span class="st">"White"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Examinando el resultado de table()vemos que alrededor de dos tercios de los automóviles tienen colores conservadores, mientras que un tercio no los tiene:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(usedcars<span class="sc">$</span>conservative)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+FALSE  TRUE 
+   51    99 </code></pre>
+</div>
+</div>
+<p>Tabulación cruzada para ver cómo la proporción de conservador los coches de colores varían según el modelo:</p>
+<p>CrossTable(x = usedcars$model, y = usedcars$conservative)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/final.png" class="img-fluid figure-img" width="333"></p>
+<p></p><figcaption class="figure-caption">Figura 10. Tabla cruzada</figcaption><p></p>
+</figure>
+</div>
+<p>Hay una gran cantidad de datos en la tabla cruzada()producción.</p>
+<ul>
+<li><p>La parte superior (etiquetado contenido de la celda) indica cómo interpretar cada valor.</p></li>
+<li><p>Las filas de la tabla indican los tres modelos de autos usados: SE, SE, y SES (más una fila adicional para el total de todos los modelos).</p></li>
+<li><p>Las columnas indican si el color del automóvil es conservador o no (más una columna que totaliza ambos tipos de color).</p></li>
+<li><p>El primer valor de cada celda indica el número de coches con esa combinación de modelo y color.</p></li>
+<li><p>Las proporciones indican la proporción de esa celda en relación con la estadística Chi-cuadrado, el total de la fila, el total de las columnas y el total de la tabla.</p></li>
+</ul>
+</section>
+<section id="resumen-1" class="level3">
+<h3 class="anchored" data-anchor-id="resumen-1">Resumen</h3>
+<ul>
+<li><p>Este capítulo cubre los conceptos básicos de la gestión de datos en R.</p></li>
+<li><p>Se analiza en detalle varios tipos de estructuras de almacenamiento de datos, comenzando con vectores y expandiéndose a tipos de datos más complejos, como listas y marcos de datos.</p></li>
+<li><p>Se resalta un marco de datos, que es una estructura de datos en R que representa el concepto de un conjunto de datos de funciones y ejemplos.</p></li>
+<li><p>Además, cómo recuperar datos en R de una variedad de fuentes, incluidos archivos CSV y bases de datos SQL, que se pueden consultar con el paquete RODBC.</p></li>
+</ul>
+</section>
 </section>
 </section>
 

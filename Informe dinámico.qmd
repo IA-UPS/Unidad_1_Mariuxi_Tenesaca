@@ -521,3 +521,336 @@ Se obtuvo gracias al comando:
 -   La variable, chr nos dice que la característica es de tipo carácter.
 
 A veces, los nombres de las variables en los conjuntos de datos no tienen sentido y pueden requerir más investigación para comprender lo que realmente representan. Si bien los nombres pueden ser útiles, es importante ser selectivo y verificar las etiquetas de las variables.
+
+### **Explorando variables numéricas**
+
+**La función summary()** muestra varias estadísticas resumidas comunes.
+
+Ejemplo una sola característica del año:
+
+```{r}
+summary(usedcars$year)
+```
+
+También podemos usar **la función summary()** para obtener estadísticas de resumen para varias variables numéricas al mismo tiempo:
+
+```{r}
+summary(usedcars[c("price", "mileage")])
+```
+
+La función proporciona herramientas simples para investigar datos.
+
+-   Se pueden dividir en dos tipos:
+
+1.  Medidas de centro
+
+2.  Medidas de dispersión
+
+### **Medición de la tendencia central: media y mediana**
+
+Las medidas de tendencia central son estadísticas que se utilizan para encontrar un valor en medio de un conjunto de datos, siendo la media la medida más familiar y comúnmente utilizada. El promedio es la suma de todos los valores dividida por el número de valores y representa el valor típico en el grupo. Sirve como punto de referencia para juzgar otros valores en el conjunto.
+
+Por ejemplo, para calcular el ingreso medio en un grupo de tres personas con ingresos de \$35 000, \$45 000 y \$55 000, podríamos escribir:
+
+```{r}
+ (36000 + 44000 + 56000) / 3
+```
+
+-   La función **mean()** calcula la media de un vector de números:
+
+```{r}
+mean(c(36000, 44000, 56000))
+```
+
+El ingreso medio de este grupo de personas es de \$45.333,33.
+
+-   La mediana, que es el valor que aparece en la mitad de una lista ordenada de valores. R proporciona la función **median()**, podemos aplicar a nuestros datos salariales como se muestra en el siguiente ejemplo:
+
+```{r}
+median(c(36000, 44000, 56000))
+```
+
+### **Medición de la dispersión: cuartiles y el resumen de cinco números**
+
+Medir la media y la mediana es útil para resumir rápidamente los datos, pero no nos proporciona información sobre la diversidad de los mismos.
+
+Para medir la dispersión, es necesario utilizar estadísticas que se ocupen de la variabilidad en los datos.
+
+El resumen de cinco números es un conjunto de cinco estadísticas que representan la dispersión de un conjunto de datos:
+
+1.  Mínimo (Min.)
+
+2.  Primer cuartil o Q1 (1st Qu.)
+
+3.  Mediana o Q2 (Median)
+
+4.  Tercer cuartil o Q3 (3rd Qu.)
+
+5.  Máximo (Max.)
+
+El lapso entre el valor mínimo y máximo se conoce como range.
+
+-   La función **range()** devuelve tanto el valor mínimo como el máximo.
+
+Ejemplo:
+
+```{r}
+ range(usedcars$price)
+```
+
+```{r}
+diff(range(usedcars$price))
+```
+
+Los cuartiles primero y tercero, Q1 y Q3, se refieren al valor por debajo o por encima del cual se encuentra una cuarta parte de los valores
+La diferencia entre Q1 y Q3:
+
+Se conoce como rango intercuartil (IQR), y se puede calcular con la **función IQR()**:
+
+```{r}
+IQR(usedcars$price)
+```
+
+La función **quantile()** devuelve el resumen de cinco números.
+
+```{r}
+ quantile(usedcars$price)
+```
+
+Si especificamos un adicional **probs** parámetro usando un vector que denota puntos de corte, podemos obtener cuantiles arbitrarios, como los percentiles 1 y 99:
+
+```{r}
+ quantile(usedcars$price, probs = c(0.01, 0.99))
+```
+
+La función de secuencia **seq()** se utiliza para generar vectores de valores espaciados uniformemente.
+
+```{r}
+quantile(usedcars$price, seq(from = 0, to = 1, by = 0.20))
+```
+
+### **Visualización de variables numéricas: diagramas de caja**
+
+La visualización de variables numéricas es útil para diagnosticar problemas de datos. Un gráfico común es el diagrama de caja, que muestra el centro y la distribución de variables numéricas en un formato fácil de entender. Este gráfico le permite comprender rápidamente el rango y la varianza de una variable y compararla con otras variables. También se conoce como pieza de caja y bigotes.
+
+Los comandos para crear diagramas de caja de precio y kilometraje son:
+
+```{r}
+boxplot(usedcars$price, main="Boxplot of Used Car Prices",
+ ylab="Price ($)")
+```
+
+```{r}
+boxplot(usedcars$mileage, main="Boxplot of Used Car Mileage",
+ ylab="Odometer (mi.)")
+```
+
+Al leer el gráfico de abajo hacia arriba, las líneas horizontales representan Q1, Q2 (mediana) y Q3.
+
+La mediana está representada por una línea negra alineada con los valores de precio y kilometraje en el eje vertical.
+
+**Importante:** En diagramas simples como se muestra arriba:
+
+-   Los anchos de caja y bigotes son arbitrarios y no se especifican propiedades de datos.
+
+-   Para un análisis más complejo, es la forma y el tamaño de la caja se pueden utilizar la comparación más fácil de datos entre diferentes grupos.
+
+### **Visualización de variables numéricas -- histogramas**
+
+-   Un histograma es una forma de representar gráficamente la distribución de una variable numérica.
+
+-   El histograma se compone de una serie de barras con alturas que indican el conteo, o frecuencia, de valores que caen dentro de cada uno de los contenedores de igual tamaño que dividen los valores.
+
+-   Es una herramienta útil para determinar la forma de la distribución de datos e identificar patrones o anomalías en los datos.
+
+Los comandos para crear un histograma son:
+
+La función hist() crea un histograma:
+
+```{r}
+hist(usedcars$price, main = "Histogram of Used Car Prices",
+ xlab = "Price ($)")
+```
+
+-   Las líneas verticales que separan las barras, tal como están etiquetadas en el eje horizontal, indican los puntos inicial y final del rango de valores del contenedor.
+
+-   En el precio histograma, cada una de las 10 barras abarca un intervalo de \$2,000, comenzando en \$2,000 y terminando en \$22,000.
+
+-   La barra más alta en el centro de la figura cubre el rango de \$12 000 a \$14 000 y tiene una frecuencia de 50.
+
+-   Dado que sabemos que nuestros datos incluyen 150 autos, sabemos que un tercio de todos los autos tienen un precio de \$12 000 a \$14 000. Casi 90 autos, más de la mitad, tienen un precio de \$12,000 a \$16,000.
+
+```{r}
+hist(usedcars$mileage, main = "Histogram of Used Car Mileage",
+ xlab = "Odometer (mi.)")
+
+```
+
+-   El histograma kilometraje incluye ocho barras que indican intervalos de 20 000 millas cada uno, comenzando en 0 y terminando en 160 000 millas.
+
+*La forma de los dos histogramas es algo diferente*: Parece que los precios de los autos usados tienden a dividirse equitativamente a ambos lados del medio, mientras que el kilometraje de los autos se extiende más hacia la derecha.
+
+### **Comprensión de datos numéricos: distribuciones uniformes y normales**
+
+La distribución de una variable describe la probabilidad de que un valor caiga dentro de varios rangos.
+
+Una distribución uniforme ocurre cuando todos los valores tienen la misma probabilidad de ocurrir. Es fácil de detectar con un histograma donde las barras tienen aproximadamente la misma altura.
+
+![Figura 7. Distribución uniforme](images/uniforme.png){fig-align="center" width="254"}
+
+Es importante tener en cuenta que no todos los eventos aleatorios son uniformes.
+
+Distribución normal es una distribución de datos en forma de campana. La curva de campana estereotipada se muestra en la figura 8:
+
+![Figura 8. Distribución normal](images/normal-01.png){fig-align="center" width="293"}
+
+### **Medición de la dispersión: varianza y desviación estándar**
+
+La propagación se mide mediante una estadística llamada desviación estándar.
+
+La desviación estándar es la raíz cuadrada de la varianza y se denota por sigma como se muestra en la siguiente fórmula:
+
+![Figura 9. Formula desviación estándar](images/nueve.png){fig-align="center" width="289"}
+
+Para obtener la varianza y la desviación estándar se utiliza las siguientes funciones:
+
+```{r}
+var(usedcars$price)
+```
+
+```{r}
+sd(usedcars$price)
+```
+
+```{r}
+var(usedcars$mileage)
+```
+
+```{r}
+sd(usedcars$mileage)
+```
+
+-   Al interpretar la varianza, los números más grandes indican que los datos se distribuyen más ampliamente alrededor de la media.
+
+-   La desviación estándar indica, en promedio, cuánto difiere cada valor de la media.
+
+### **Explorando variables categóricas**
+
+Los datos categóricos se examinan mediante tablas en lugar de estadísticas de resumen.
+
+Una tabla que presenta una sola variable categórica se conoce como tabla unidireccional.
+
+La función **table()** se puede usar para generar tablas unidireccionales para nuestros datos de autos usados:
+
+```{r}
+table(usedcars$year)
+```
+
+```{r}
+table(usedcars$model)
+```
+
+```{r}
+ table(usedcars$color)
+```
+
+Los resultados de la prop.tabla() se puede combinar con otras funciones de R para transformar la salida:
+
+```{r}
+color_table <- table(usedcars$color)
+color_pct <- prop.table(color_table) * 100
+round(color_pct, digits = 1)
+```
+
+### **Medición de la tendencia central: La moda**
+
+-   La moda de una característica es el valor que ocurre con mayor frecuencia. Al igual que la media y la mediana, la moda es otra medida de tendencia central.
+
+-   A menudo se usa para datos categóricos, ya que la media y la mediana no están definidas para variables nominales.
+
+### **Explorando relaciones entre variables**
+
+Las relaciones de más de dos variables se llaman multivariantes relaciones.
+
+### **Visualización de relaciones: Diagramas de dispersión**
+
+-   Un diagrama de dispersión es un gráfico bidimensional que muestra una relación bidimensional entre dos funciones.
+
+-   Un valor de atributo se utiliza para determinar la posición horizontal del punto, mientras que el otro valor de atributo determina la posición vertical.
+
+-   Los patrones de ubicaciones de puntos pueden revelar asociaciones entre dos rasgos.
+
+El comando completo para crear nuestro diagrama de dispersión es:
+
+```{r}
+ plot(x = usedcars$mileage, y = usedcars$price,
+ main = "Scatterplot of Price vs. Mileage",
+ xlab = "Used Car Odometer (mi.)",
+ ylab = "Used Car Price ($)")
+```
+
+Al observar un diagrama de dispersión que muestra la relación entre los precios de los autos usados ​​y las lecturas del odómetro, puede ver que a medida que aumenta el valor en el eje horizontal (kilometraje), el valor en el eje vertical (precio) tiende a disminuir a medida que disminuye el valor.
+
+Esto significa que los coches con mayor kilometraje son más baratos. Es una idea que cualquier persona que haya comprado o vendido un auto usado generalmente entenderá.
+
+La fuerza de una asociación lineal entre dos variables se mide mediante una estadística conocida como correlación.
+
+### **Examen de las relaciones: Tabulaciones cruzadas de dos factores**
+
+-   Una tabulación cruzada es una herramienta para probar la relación entre dos variables nominales.
+
+-   Esta herramienta es similar a un gráfico de dispersión en el sentido de que le permite examinar cómo varía el valor de una variable con otra variable.
+
+-   Una tabulación cruzada es una tabla en la que las filas representan los niveles de una variable y las columnas representan los niveles de otra variable.
+
+-   El conteo en cada celda de la tabla indica el número de valores que pertenecen a una determinada combinación de filas y columnas.
+
+Instalar el tipo de paquete (gmodels):
+
+`install.packages("gmodels")`
+
+Después de que se instale el paquete, simplemente escriba en la biblioteca (modelos g)para cargar el paquete.
+
+Después de que se instale el paquete, simplemente escriba en la biblioteca (modelos g) para cargar el paquete.
+
+Simplificar el proyecto reduciendo el número de niveles en la variable color.
+
+```{r}
+usedcars$conservative <-
+ usedcars$color %in% c("Black", "Gray", "Silver", "White")
+
+```
+
+Examinando el resultado de table()vemos que alrededor de dos tercios de los automóviles tienen colores conservadores, mientras que un tercio no los tiene:
+
+```{r}
+table(usedcars$conservative)
+```
+
+Tabulación cruzada para ver cómo la proporción de conservador los coches de colores varían según el modelo:
+
+CrossTable(x = usedcars\$model, y = usedcars\$conservative)
+
+![Figura 10. Tabla cruzada](images/final.png){width="333"}
+
+Hay una gran cantidad de datos en la tabla cruzada()producción.
+
+-   La parte superior (etiquetado contenido de la celda) indica cómo interpretar cada valor.
+
+-   Las filas de la tabla indican los tres modelos de autos usados: SE, SE, y SES (más una fila adicional para el total de todos los modelos).
+
+-   Las columnas indican si el color del automóvil es conservador o no (más una columna que totaliza ambos tipos de color).
+
+-   El primer valor de cada celda indica el número de coches con esa combinación de modelo y color.
+
+-   Las proporciones indican la proporción de esa celda en relación con la estadística Chi-cuadrado, el total de la fila, el total de las columnas y el total de la tabla.
+
+### Resumen
+
+-   Este capítulo cubre los conceptos básicos de la gestión de datos en R.
+
+-   Se analiza en detalle varios tipos de estructuras de almacenamiento de datos, comenzando con vectores y expandiéndose a tipos de datos más complejos, como listas y marcos de datos.
+
+-    Se resalta un marco de datos, que es una estructura de datos en R que representa el concepto de un conjunto de datos de funciones y ejemplos.
+
+-    Además, cómo recuperar datos en R de una variedad de fuentes, incluidos archivos CSV y bases de datos SQL, que se pueden consultar con el paquete RODBC.
