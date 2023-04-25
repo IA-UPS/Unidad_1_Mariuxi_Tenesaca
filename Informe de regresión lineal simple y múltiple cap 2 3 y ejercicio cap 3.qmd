@@ -484,3 +484,125 @@ tarjetas, educación, ingresos, límite y calificación de una serie de clientes
 Cuando un predictor cualitativo tiene más de dos niveles, una única variable ficticia no puede representar todos los valores posibles.
 
 No puede representar todos los valores posibles. En esta situación, se debe crear variables ficticias adicionales.
+
+Por ejemplo, para la variable región creamos dos variables ficticias:
+
+La primera:
+
+![](images/f23.png){fig-align="center" width="337" height="65"}
+
+La segunda:
+
+![](images/f24.png){fig-align="center" width="301"}
+
+#### **Extensiones del modelo lineal**
+
+Los modelos de regresión lineal estándar brindan resultados interpretables y funcionan bien para muchos problemas del mundo real. Sin embargo, contiene varios supuestos muy restrictivos que a menudo se violan en la práctica.
+
+El supuesto de aditividad significa que la relación entre el predictor lineal X j y la respuesta Y es independiente de los valores de los otros predictores.
+
+La suposición de linealidad establece que el cambio en la respuesta Y asociado con un cambio unitario en Xj es constante independientemente del valor de Xj.
+
+#### **Relaciones no lineales**
+
+Los modelos de regresión lineal asumen una relación lineal entre la variable de respuesta y las variables predictoras, pero en algunos casos esta relación puede ser no lineal.
+
+Para abordar esto, la regresión polinomial se puede utilizar como una forma sencilla de ampliar los modelos lineales y adaptarlos a condiciones no lineales.
+
+Ampliar el modelo lineal para dar cabida a relaciones no lineales se conoce como regresión polinómica, ya que se incluye funciones polinómicas de los predictores en el modelo de regresión.
+
+#### **Problemas potenciales**
+
+Cuando ajustamos un modelo de regresión lineal a un conjunto de datos concreto, pueden surgir muchos problemas. Los más comunes son los siguientes
+
+1\. No linealidad de las relaciones respuesta-predictor.
+
+2\. 2. Correlación de los términos de error.
+
+3\. Varianza no constante de los términos de error.
+
+4\. Valores atípicos.
+
+5\. Puntos de alto apalancamiento.
+
+6\. Colinealidad.
+
+#### **Ejemplo: Datos no lineales**
+
+![Figura 25. Gráficos de residuos frente a valores predichos (o ajustados) para el conjunto de datos Auto. En cada gráfico, la línea roja es un ajuste suave de los residuos, para facilitar la identificación de una tendencia.](images/f25.png){fig-align="center" width="417"}
+
+Los modelos de regresión lineal asumen una relación lineal entre el predictor y las variables de respuesta. Si la verdadera relación está lejos de ser lineal, cualquier conclusión que saquemos del ajuste será sospechosa. Además, la precisión de predicción del modelo se reducirá significativamente.
+
+#### **Correlación de los términos de error**
+
+Una suposición importante de los modelos de regresión lineal es que los términos de error ε1, ε2, \..., εn no están correlacionados.
+
+-   Esto significa que, por ejemplo, si los errores no están correlacionados, el hecho de que εi sea positivo proporciona poca o ninguna información sobre el signo de εi 1 .
+
+-   Los errores estándar calculados para los coeficientes de regresión estimados o los valores ajustados se basan en la suposición de que los términos de error no están correlacionados.
+
+-   Si de hecho existe una correlación entre los términos de error, el error estándar estimado suele subestimar el error estándar verdadero. Por lo tanto, los intervalos de confianza y predicción serán más estrechos de lo que deberían ser.
+
+En resumen, si los términos de error están correlacionados, es posible que tengamos una confianza indebida en nuestro modelo y que las conclusiones sean incorrectas.
+
+#### **Varianza no constante de los términos de error**
+
+Otra suposición importante de los modelos de regresión lineal es que el término de error tiene una varianza constante Var(εi) = σ2.
+
+Los errores estándar, los intervalos de confianza y la precisión de las pruebas de hipótesis se basan en esta suposición.
+
+Desafortunadamente, a menudo sucede que la varianza del término de error no es constante. Por ejemplo:
+
+-   La varianza del término de error puede aumentar a medida que aumenta el valor de la respuesta. Ante este problema, una posible solución es transformar la respuesta Y utilizando una función cóncava como log Y o √Y.
+
+-   Este cambio conduce a una mayor reducción de la heterocedasticidad. Un signo de heteroscedasticidad es la presencia de una forma de embudo en la gráfica de residuos.
+
+#### **Valores atípicos**
+
+Un valor atípico es un punto para el cual Yi está muy lejos del valor predicho por el modelo de valores atípicos.
+
+Los valores atípicos pueden surgir por diversas razones, como la grabación incorrecta de una observación durante la recopilación de datos. Aunque a veces eliminar el valor atípico no afecta mucho la línea de ajuste por mínimos cuadrados, puede causar otros problemas, como:
+
+-   Un aumento dramático en el error estándar residual (RSE)
+
+-   Una disminución en el coeficiente de determinación (R2)
+
+Esto puede tener implicaciones para la interpretación del ajuste y afectar la validez de las pruebas de hipótesis y los intervalos de confianza.
+
+#### **Puntos de alta influencia**
+
+Las observaciones con alto nivel de influencia (high leverage) tienen un valor inusual para la variable predictora Xi, mientras que los valores de la variable respuesta Yi pueden ser bastante comunes.
+
+La eliminación de estas observaciones puede tener un gran impacto en la línea de regresión estimada. Los puntos de alta influencia tienen un impacto considerable en la línea de regresión estimada y esto es motivo de preocupación si se sospecha que un punto tiene alta influencia.
+
+Por lo tanto, es importante detectar y manejar adecuadamente las observaciones con alto nivel de influencia para evitar resultados erróneos en el análisis de regresión.
+
+#### **Colinealidad**
+
+La colinealidad se refiere a la situación en la que dos o más variables predictoras están altamente correlacionadas entre sí.
+
+La figura 26 muestra el concepto de colinealidad utilizando el conjunto de datos de préstamos, en el panel izquierdo de la figura, no existe una relación significativa entre las dos variables predictoras, límite y edad. Por el contrario, los predictores de ingresos y saldos en el panel derecho de la figura están altamente correlacionados, lo que indica un alto grado de colinealidad.
+
+![Figura 26. Diagrama de dispersión de observaciones para el conjunto de datos de crédito.](images/f26.png){fig-align="center" width="323"}
+
+La colinealidad puede causar problemas en la interpretación de los coeficientes de regresión y afectar la precisión de las estimaciones de los coeficientes y sus intervalos de confianza.
+
+Una solución común para abordar la colinealidad es eliminar uno de los predictores altamente correlacionados o combinarlos en una sola variable utilizando técnicas como el análisis de componentes principales.
+
+#### **Comparación de la regresión lineal con K-Nearest Neighbors**
+
+El enfoque paramétrico tiene ventajas como el fácil ajuste y la interpretación simple de los coeficientes. Sin embargo, también tienen la desventaja de que hacen fuertes suposiciones sobre la forma de f (X). Si esta forma es muy diferente de la realidad, es posible que el enfoque paramétrico no funcione bien. Por otro lado, los métodos no paramétricos claramente no asumen una forma paramétrica de f(X), lo que les da una elección más flexible.
+
+Uno de los métodos no paramétricos más simples y conocidos es la regresión K-vecino más cercano (regresión KNN). El método identifica los puntos de entrenamiento K que están más cerca del punto predicho x0 y estima f(x0) como el promedio de las respuestas de entrenamiento en esos puntos.
+
+*¿En qué entorno un enfoque paramétrico como la regresión lineal de mínimos cuadrados superará a un enfoque no paramétrico como la regresión KNN?*
+
+-   La respuesta es simple: El enfoque paramétrico superará al enfoque no paramétrico si la forma paramétrica que se ha seleccionado está cerca de la verdadera forma de F.
+
+Los métodos paramétricos tienden a superar a los métodos no paramétricos cuando hay pocas observaciones predictivas. Aunque en dimensiones pequeñas, la regresión lineal puede superar a KNN en términos de interpretabilidad.
+
+Si la precisión de KNN es ligeramente menor que la de la regresión lineal, puede elegir un modelo simple que se pueda caracterizar por algunos coeficientes y donde los valores de p estén disponibles.
+
+## Capítulo 3 Laboratorio: Regresión Lineal
+
+### Bibliotecas
