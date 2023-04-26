@@ -15,7 +15,7 @@ author: "Mariuxi Maribel Tenesaca Yuqui"
 
 -    El presupuesto de publicidad es la variable de entrada (o independiente) etiquetada como X1, X2 y X3, mientras que las ventas son la variable de salida (o dependiente) etiquetada como Y.
 
--   Los términos "predictor", "variable independiente", "función" o simplemente "variable ". " se usan indistintamente para referirse a la variable de entrada, mientras que la variable de salida también se puede llamar "respuesta" o "variable dependiente".
+-   Los términos "predictor", "variable independiente", "función" o simplemente "variable". " se usan indistintamente para referirse a la variable de entrada, mientras que la variable de salida también se puede llamar "respuesta" o "variable dependiente".
 
 ### **¿Por qué estimar f?**
 
@@ -77,7 +77,7 @@ Siempre supondremos que hemos observado un conjunto de n puntos de datos diferen
 
 Estas observaciones se denominan datos de entrenamiento, ya se usarán para:
 
--    Entrenar o enseñar.
+-   Entrenar o enseñar.
 
 Para entrenar, o enseñar, a nuestro método a estimar f.
 
@@ -145,7 +145,7 @@ En general, a medida que aumenta la flexibilidad de un método, disminuye su int
 
 ![Una representación del compromiso entre flexibilidad e interpretabilidad, utilizando diferentes métodos de aprendizaje estadístico.](images/figura3.png){fig-align="center" width="412"}
 
-### **Aprendizaje supervisado frente a aprendizaje no supervisado** 
+### **Aprendizaje supervisado frente a aprendizaje no supervisado**
 
 La mayoría de los problemas de aprendizaje estadístico pertenecen a una de estas dos categorías: **supervisados o no supervisados**.
 
@@ -606,3 +606,368 @@ Si la precisión de KNN es ligeramente menor que la de la regresión lineal, pue
 ## Capítulo 3 Laboratorio: Regresión Lineal
 
 ### Bibliotecas
+
+La función **library()**: se utiliza para cargar bibliotecas, o grupos de funciones y conjuntos de datos que no están incluidos en la base R distribución.
+
+-   Cargamos (MASA) paquete, que es una colección muy grande de conjuntos de datos y funciones.
+
+-   También Cargamos el (ISLR2) paquete, que incluye los conjuntos de datos asociados con este libro.
+
+```{r}
+library (MASS)
+```
+
+```{r}
+library (ISLR2)
+```
+
+### **Regresión lineal simple**
+
+La biblioteca (ISLR2) contiene (Boston) conjunto de datos, que registra medv(valor medio de la casa) para 506 distritos censales en Boston.
+
+Buscaremos predecir medv usando 12 predictores tales como rm(promedio de cuartos por casa), edad(edad promedio de las casas), ylstat(porcentaje de hogares con nivel socioeconómico bajo).
+
+```{r}
+head (Boston)
+```
+
+1.  Para obtener más información sobre el conjunto de datos, podemos escribir.
+
+2.  La función lm() para ajustar un modelo de regresión lineal simple.
+
+3.  lm(), con medv como respuesta.
+
+4.  lstat como predictor.
+
+5.  La sintaxis básica es lm(y ∼ x, datos), donde y es la respuesta, x es el predictor y datos es el conjunto de datos en el que se mantienen estas dos variables.
+
+`lm.fit <- lm(medv ∼ lstat)`
+Error in eval(expr , envir , enclos) : Object "medv" not found
+*El comando genera un error porque R no sabe dónde encontrar las variables medv y lstat.*
+
+Adjuntamos Boston, la primera línea funciona bien porque R ahora reconoce las variables.
+
+```{r}
+lm.fit <- lm ( medv~lstat , data = Boston )
+attach ( Boston )
+lm.fit <- lm ( medv~lstat )
+```
+
+Si escribimos lm.fit, se genera información básica sobre el modelo.
+
+```{r}
+lm.fit
+```
+
+Para obtener información más detallada, utilizamos resumen (lm. ajuste).
+
+```{r}
+summary (lm.fit)
+```
+
+La función names() averigua qué otras piezas names() de información se almacenan en lm.fit.
+
+-   Aunque podemos extraer estas cantidades por su nombre -por ejemplo, lm.fit\$coefficients- es más seguro utilizar las funciones extractoras como coef() para acceder a ellas.
+
+```{r}
+names (lm.fit)
+```
+
+```{r}
+coef (lm.fit)
+```
+
+El comando confint() se usa para obtener un intervalo de confianza para las estimaciones de los coeficientes.
+
+```{r}
+confint (lm.fit)
+```
+
+La función predict() puede utilizarse para producir intervalos de confianza e intervalos de predicción predict() para la predicción de medv para un valor dado de lstat.
+
+```{r}
+predict(lm.fit , data.frame(lstat = (c(5 , 10 , 15))) ,
+interval = "confidence")
+```
+
+```{r}
+predict(lm.fit , data.frame(lstat = (c(5 , 10 , 15))) ,
+interval = "prediction")
+```
+
+Ahora trazaremos medv y lstat junto con la línea de regresión por mínimos cuadrados utilizando las funciones plot() y abline().
+
+```{r}
+plot ( lstat , medv )
+abline ( lm.fit )
+```
+
+-   La función abline() puede utilizarse para trazar cualquier línea, no sólo la línea de regresión por mínimos cuadrados.
+
+-   Para dibujar una línea con intercepto a y pendiente b, escribimos abline(a, b).
+
+-   El comando lwd = 3 hace que la anchura de la línea de regresión se incremente en un factor de 3; esto funciona también para las funciones plot() y lines().
+
+-   La opción pch para crear diferentes símbolos de trazado.
+
+```{r}
+plot(lstat , medv )
+abline(lm.fit, lwd = 3)
+abline(lm.fit, lwd= 3 , col = " red ")
+```
+
+```{r}
+plot(lstat, medv , col = " red ")
+
+```
+
+```{r}
+plot(lstat, medv , pch = 20)
+```
+
+```{r}
+plot(lstat, medv , pch = " + ")
+```
+
+```{r}
+plot(1:20, 1:20 , pch = 1:20)
+
+```
+
+Se producen automáticamente cuatro gráficos de diagnóstico aplicando la función plot() directamente a la salida de lm().
+
+En general, este comando producirá un gráfico cada vez, y al pulsar Intro se generará el siguiente gráfico. Sin embargo, a menudo es conveniente ver los cuatro gráficos juntos.
+
+Las funciones par() y mfrow(), que indican a R que divida la pantalla de visualización en paneles separados de forma que se puedan visualizar varios gráficos simultáneamente.
+
+-   *Por ejemplo, par(mfrow = c(2, 2)) divide la región de en una cuadrícula de paneles de 2 × 2.*
+
+```{r}
+par(mfrow = c(2,2))
+plot(lm.fit)
+```
+
+Calcular los residuos de un ajuste de regresión lineal utilizando la función residuals().
+
+La función rstudent() devolverá los residuales() rstudent() y podemos utilizar esta función para representar gráficamente los residuos frente a los valores ajustados.
+
+```{r}
+plot ( predict (lm.fit), residuals (lm.fit))
+```
+
+```{r}
+plot ( predict (lm.fit), rstudent (lm.fit))
+```
+
+Según los gráficos de residuos, hay indicios de no linealidad.
+
+Los estadísticos de apalancamiento pueden calcularse para cualquier número de predictores utilizando la función **hatvalues().**
+
+```{r}
+plot ( hatvalues (lm.fit))
+```
+
+```{r}
+which.max ( hatvalues (lm.fit))
+```
+
+La función which.max() identifica el índice del elemento mayor de un vector which.max().
+
+En este caso, nos dice qué observación tiene el mayor estadístico de apalancamiento mayor.
+
+### **Regresión lineal múltiple**
+
+Para ajustar un modelo de regresión lineal múltiple por mínimos cuadrados, volvemos a utilizar la función utilizamos de nuevo la función lm().
+
+La sintaxis lm (y ∼ x1 + x2 + x3) se utiliza para ajustar un modelo con tres predictores, x1, x2 y x3.
+
+La función summary() muestra ahora los coeficientes de regresión de todos los predictores.
+
+```{r}
+lm.fit <- lm(medv ~ lstat + age, data = Boston)
+summary(lm.fit)
+```
+
+El conjunto de datos de Boston contiene 12 variables, para realizar una regresión utilizar la siguiente abreviatura:
+
+```{r}
+lm.fit <- lm(medv ~ ., data = Boston)
+summary(lm.fit)
+
+```
+
+Podemos acceder a los componentes individuales de un objeto resumen por su nombre (escriba resumen.lm para ver los componentes disponibles). Así, summary(lm.fit)\$r.sq nos da el R2, y summary(lm.fit)\$sigma nos da el RSE.
+
+La función vif() vif(), que forma parte del paquete car, puede utilizarse para calcular los factores de inflación de la varianza.
+
+La mayoría de los VIF son de bajos a moderados para estos datos.
+
+El paquete car no forma parte de la instalación base de R, por lo que debe descargarse la primera vez que se utiliza a través de install.packages.
+
+```{r}
+library(car)
+```
+
+```{r}
+vif(lm.fit)
+```
+
+¿Y si quisiéramos realizar una regresión utilizando todas las variables menos una?
+
+```{r}
+lm.fit1 <- lm(medv ~ . - age, data = Boston)
+summary(lm.fit1)
+```
+
+Como alternativa, puede utilizarse la función update().
+
+```{r}
+lm.fit1 <- update(lm.fit, ~ . - age)
+```
+
+### **Términos de interacción**
+
+Es fácil incluir términos de interacción en un modelo lineal utilizando la función lm()
+
+La sintaxis lstat:black indica a R que incluya un término de interacción entre lstat y black.
+
+La sintaxis lstat \* edad incluye simultáneamente lstat, la edad.
+
+El término de interacción lstat×edad como predictores; es una abreviatura de lstat + edad + lstat:edad.
+
+```{r}
+summary (lm(medv~lstat * age , data = Boston))
+```
+
+### **Transformaciones no lineales de los predictores**
+
+La función lm() también puede acomodar transformaciones no lineales de los predictores.
+
+-   Por ejemplo, dado un predictor X, podemos crear un predictor X2 utilizando I(X\^2).
+
+La función I() es necesaria ya que el \^ tiene un significado especial I() en un objeto de fórmula; envolver como hacemos permite el uso estándar en R, que es elevar X a la potencia 2.
+
+Ahora realizamos una regresión de medv sobre lstat y lstat2.
+
+```{r}
+lm.fit2 <- lm(medv ~ lstat + I(lstat^2))
+summary(lm.fit2)
+
+```
+
+El valor p casi nulo asociado al término cuadrático sugiere que conduce a un modelo mejorado.
+
+La función anova() para cuantificar mejor hasta qué punto el ajuste cuadrático es superior al lineal.
+
+```{r}
+lm.fit <- lm(medv ~ lstat)
+anova(lm.fit, lm.fit2)
+```
+
+El Modelo 1 representa el submodelo lineal que contiene un solo predictor, lstat.
+
+El Modelo 2 corresponde al modelo cuadrático más amplio que tiene dos predictores, lstat y lstat2.
+
+La función anova() realiza una prueba de hipótesis compara los dos modelos. La hipótesis nula es que los dos modelos se ajustan igual de bien a los datos.
+
+La hipótesis alternativa es que el modelo es superior.
+
+```{r}
+par(mfrow = c(2,2))
+plot(lm.fit2)
+```
+
+La función poly() para crear el polinomio dentro de lm().
+
+-   Por ejemplo, el siguiente comando produce un ajuste polinómico de quinto orden:
+
+```{r}
+lm.fit5 <- lm(medv ~ poly(lstat, 5))
+summary(lm.fit5)
+```
+
+Esto sugiere que la inclusión de términos polinómicos adicionales, de hasta quinto orden,
+
+mejora el ajuste del modelo. Sin embargo, un análisis más detallado de los datos revela que ningún término polinómico más allá del quinto orden tiene valores p significativos en un ajuste de regresión.
+
+Por defecto, la función poly() ortogonaliza los predictores.
+
+Para obtener los polinomios brutos de la función poly(), debe utilizarse el argumento raw = TRUE.
+
+Ejemplo de aplicación de una transformación logarítmica:
+
+```{r}
+summary(lm(medv ~ log(rm), data = Boston))
+```
+
+### **Predictores cualitativos**
+
+A continuación, examinaremos los datos de Asientos de seguridad, que forman parte de la biblioteca ISLR2.
+
+Intentaremos predecir las ventas (ventas de sillas de coche para niños) en 400 localidades basándonos en una serie de predictores.
+
+```{r}
+head(Carseats)
+```
+
+Los datos de Carseats incluyen predictores cualitativos como Shelveloc, un indicador de la calidad de la ubicación de la estantería -es decir, el espacio de la tienda en el que se expone la silla- en cada establecimiento.
+
+El predictor Shelveloc adopta tres valores posibles: Malo, Medio y Bueno.
+
+Dada una variable cualitativa como Shelveloc, R genera variables ficticias automáticamente.
+
+A continuación, ajustamos un modelo de regresión múltiple que incluye algunos términos de interacción.
+
+```{r}
+lm.fit <- lm(Sales ~ . + Income:Advertising + Price:Age, data = Carseats)
+summary(lm.fit)
+
+```
+
+La función contrasts() devuelve la codificación que R utiliza para las variables ficticias contrasts().
+
+```{r}
+attach(Carseats)
+contrasts(ShelveLoc)
+```
+
+El hecho de que el coeficiente de ShelveLocGood en el resultado de la regresión sea positivo indica que una buena estantería se asocia a ventas elevadas (en comparación con las malas).
+
+Y ShelveLocMedium tiene un coeficiente positivo menor, lo que indica que una la ubicación media de las estanterías se asocia a mayores ventas que una mala ubicación, pero a menores ventas que una buena ubicación.
+
+### **Escribir funciones**
+
+Escribir nuestra propia función. Por ejemplo, a continuación:
+
+Una función sencilla que lee las bibliotecas ISLR2 y MASS, llamada LoadLibraries(). Antes de que hayamos creado la función, R devuelve un error si intentamos llamarla.
+
+`LoadLibraries Error: object ‘LoadLibraries ’ not found
+LoadLibraries() Error: could not find function "LoadLibraries"`
+
+**Ahora creamos la función**
+
+-   El símbolo { informa a R que varios comandos están a punto de ser introducidos. Si pulsa Intro después de escribir {, R imprimirá el símbolo +.
+
+-   Podemos entonces introducir tantos comandos como deseemos, pulsando Enter después de cada uno.
+
+-   Finalmente el símbolo } informa a R que no se introducirán más comandos serán introducidos.
+
+```{r}
+LoadLibraries <- function() {
+library(ISLR2)
+library(MASS)
+print("Las bibliotecas han sido cargadas.")
+}
+```
+
+-   Ahora si tecleamos LoadLibraries, R nos dirá qué contiene la función.
+
+```{r}
+LoadLibraries
+```
+
+-   Si llamamos a la función, las librerías se cargan y la sentencia print se imprime.
+
+```{r}
+LoadLibraries()
+```
