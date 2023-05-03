@@ -1,7 +1,8 @@
 ---
-title: "Tarea"
+title: "Trabajo Final Metodos de Clasificacion"
 format: html
 editor: visual
+author: "Mariuxi Maribel Tenesaca Yuqui"
 ---
 
 # Métodos de clasificación
