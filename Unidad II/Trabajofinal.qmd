@@ -20,7 +20,7 @@ library(e1071) ## bayes
 
 ```
 
-## Cargamos los datos
+## Cargamos datos
 
 ```{r}
 # quitamos la primera columna
@@ -207,7 +207,6 @@ datos.test.lista <- lapply(datos.lista, function(x) x[-idx,])
 cvfit_lasso <- cv.glmnet(as.matrix(datos.train.lista$raw[,-ncol(datos)]),as.numeric(datos.train.lista$raw$clase),type.measure = "class",family="multinom", alpha = 0,nfolds = 4)
 
 
-
 ```
 
 ```{r}
@@ -222,5 +221,4 @@ predicciones <- predict(modelo, newdata = datos.test.lista$raw)
 # Matriz de confusión
 library(caret)
 confusionMatrix(data = predicciones, reference = datos.test.lista$raw$clase)
-
 ```
