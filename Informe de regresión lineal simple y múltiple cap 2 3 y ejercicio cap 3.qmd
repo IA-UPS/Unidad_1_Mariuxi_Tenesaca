@@ -641,9 +641,7 @@ head (Boston)
 
 5.  La sintaxis básica es lm(y ∼ x, datos), donde y es la respuesta, x es el predictor y datos es el conjunto de datos en el que se mantienen estas dos variables.
 
-`lm.fit <- lm(medv ∼ lstat)`
-Error in eval(expr , envir , enclos) : Object "medv" not found
-*El comando genera un error porque R no sabe dónde encontrar las variables medv y lstat.*
+`lm.fit <- lm(medv ∼ lstat)` Error in eval(expr , envir , enclos) : Object "medv" not found *El comando genera un error porque R no sabe dónde encontrar las variables medv y lstat.*
 
 Adjuntamos Boston, la primera línea funciona bien porque R ahora reconoce las variables.
 
@@ -941,8 +939,7 @@ Escribir nuestra propia función. Por ejemplo, a continuación:
 
 Una función sencilla que lee las bibliotecas ISLR2 y MASS, llamada LoadLibraries(). Antes de que hayamos creado la función, R devuelve un error si intentamos llamarla.
 
-`LoadLibraries Error: object ‘LoadLibraries ’ not found
-LoadLibraries() Error: could not find function "LoadLibraries"`
+`LoadLibraries Error: object ‘LoadLibraries ’ not found LoadLibraries() Error: could not find function "LoadLibraries"`
 
 **Ahora creamos la función**
 
